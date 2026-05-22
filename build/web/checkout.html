@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Airnet - Checkout</title>
+        <link rel="icon" href="assets/images/airnet_logo.ico">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/checkout.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
+    </head>
+
+    <body>
+        <!-- Header/Navigation Bar -->
+        <header class="header">
+            <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+                <a href="index.html" class="logo">AIRNET</a>
+
+                <!-- Search Bar, Go to Cart, Advanced Search moved to header -->
+                <div class="header-search-controls d-flex align-items-center flex-grow-1 justify-content-center mx-3">
+                    <div class="input-group header-search-bar me-3">
+                        <input type="text" class="form-control" placeholder="Search movies or TV shows..."
+                               id="search-bar-content">
+                        <button class="btn btn-outline-light" type="button" onclick="goToSearch();">Search</button>
+                    </div>
+
+                    <a href="cart.html" class="btn btn-danger header-cart-icon me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+
+                    <!-- Advanced Search button as icon -->
+                    <button class="btn btn-outline-light header-advanced-search-btn" onclick="window.location.href = 'searched_contents.html'">
+                        <i class="fas fa-sliders-h"></i>
+                    </button>
+
+                </div>
+                <!-- HIGHLIGHT END -->
+
+                <!-- User Authentication Section -->
+                <div id="auth-section">
+                    <div class="dropdown d-none" id="myAccount_btn">
+                        <button class="btn btn-secondary dropdown-toggle user-dropdown" type="button" id="userDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i> My Account
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item text-center py-1" href="my_account.html">My Account</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-center py-1" href="#" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Header/Navigation Bar -->
+
+        <!-- Main Content Area -->
+        <main class="container-fluid p-5" style="margin-bottom: 100px">
+
+            <div class="mb-3">
+                <a href="#" id="checkout-content-go-back-btn"><i class="fa-solid fa-arrow-left fa-2x text-light"></i></a>
+            </div>
+
+            <div class="row g-4">
+                <!-- Checkout Product Details Viewing Area (left side) -->
+                <div class="col-lg-8 d-none" id="checkout-content-viewing-area">
+                    <div class="card checkout-products-card text-white rounded-4 shadow-lg p-4">
+                        <div class="row g-3">
+                            <div class="col-md-4 d-flex justify-content-center position-relative">
+                                <a href="#" target="_blank" style="display: contents;" id="checkout-content-img-a">
+                                    <img id="checkout-content-img" src="https://placehold.co/120x180/e50914/fff?text=Poster" class="img-fluid rounded-3" alt="Movie Poster">
+                                </a>
+                            </div>
+                            <div class="col-md-8">
+                                <h3 class="fw-bold mb-0" id="checkout-content-name">Captivating Drama Series (2024)</h3>
+                                <div class="d-flex align-items-center my-2">
+                                    <span class="badge bg-danger rounded-pill me-2" id="checkout-content-quality-type">HD</span>
+                                    <p class="mb-0 me-3" id="checkout-content-rating"><i class="fas fa-star text-warning"></i> 9.1/10 IMDB</p>
+                                    <p class="mb-0 fw-bold fs-5" style="color: orangered;" id="checkout-content-price">Rs. 24.99</p>
+                                </div>
+                                <p class="text-secondary small" id="checkout-content-description">
+                                    This is a placeholder for the drama description. It should provide a compelling overview
+                                    of the
+                                    series, its characters, and overarching plot without giving away major spoilers. Explore
+                                    the
+                                    emotional depths and intricate storytelling of this captivating drama. Lorem ipsum dolor
+                                    sit amet,
+                                    consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua.
+                                </p>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <ul class="list-unstyled product-details-list">
+                                            <li id="checkout-content-released-at"><strong>Released:</strong> 2024-01-15</li>
+                                            <li id="checkout-content-genre-line"><strong>Genre:</strong> Drama, Romance, Family</li>
+                                            <li id="checkout-content-language-line"><strong>Language:</strong> Korean</li>
+                                            <li id="checkout-content-cast"><strong>Cast:</strong> Lead Actor One, Lead Actress Two, Supporting Actor
+                                                Three, Supporting Actress Four</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="list-unstyled product-details-list">
+                                            <li id="checkout-content-duration"><strong>Duration:</strong> 60 min/ep</li>
+                                            <li id="checkout-content-country-line"><strong>Country:</strong> South Korea</li>
+                                            <li id="checkout-content-episode-count"><strong>Episodes:</strong> 16</li>
+                                            <li id="checkout-content-production"><strong>Production:</strong> Drama Studio, Network X</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary Section (right side) -->
+                <div class="col-lg-4 d-none" id="checkout-content-order-summary-area">
+                    <div class="card order-summary-card text-white rounded-4 shadow-lg p-4 h-100">
+                        <h2 class="card-title order-summary-title text-center mb-4  fw-bold">Order Summary</h2>
+                        <ul class="list-group list-group-flush mb-4">
+                            <li
+                                class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-secondary">
+                                <span>Subtotal</span>
+                                <span id="checkout-content-sub-total">Rs. 0.00</span>
+                            </li>
+                            <li
+                                class="list-group-item d-flex justify-content-between align-items-center bg-transparent text-white border-secondary">
+                                <span>Discount</span>
+                                <span class="text-success">-Rs. 0.00</span>
+                            </li>
+                            <li
+                                class="list-group-item d-flex justify-content-between align-items-center bg-transparent fw-bold text-danger fs-5 border-secondary">
+                                <span class="total-price">Total Price</span>
+                                <span class="total-price" id="checkout-content-total-price">Rs. 1200.00</span>
+                            </li>
+                        </ul>
+
+                        <!-- HIGHLIGHT START -->
+                        <!-- Payment Method Section -->
+                        <hr class="my-1" style="border-color: #333;">
+                        <div class="payment-method-card p-3 rounded-3 mb-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div class="d-flex align-items-center">
+                                    <input class="form-check-input me-3" type="radio" name="payment-method"
+                                           id="visa-mastercard" checked>
+                                    <label class="form-check-label fw-bold" for="visa-mastercard">
+                                        Visa/Master Card
+                                    </label>
+                                </div>
+                                <div class="payment-logos">
+                                    <img src="./assets/images/visa.png">
+                                    <img src="./assets/images/mastercard.png">
+                                </div>
+                            </div>
+                            <p class="text-secondary ps-4">You can pay with your credit or debit card.</p>
+                        </div>
+                        <!-- HIGHLIGHT END -->
+
+                        <button class="btn btn-danger checkout-btn btn-lg w-100 fw-bold" id="checkout-content-checkout-btn" disabled onclick="checkout();">Checkout</button>
+                    </div>
+                </div>
+            </div>
+            <!-- HIGHLIGHT END -->
+        </main>
+        <!-- Main Content Area -->
+
+        <!-- Footer section -->
+        <div class="footer">
+            <div class="footer-content">
+                <p class="mb-4">Questions? Call <a href="#" class="footer-link">+94 77 523 8185</a></p>
+                <div class="row footer-links">
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">FAQ</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">Help Center</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">Terms of Use</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">Privacy</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-2">
+                        <a href="#" class="footer-link">Cookie Preferences</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-2">
+                        <a href="#" class="footer-link">Corporate Information</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer section -->
+        <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+        <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
+        <script src="assets/js/check_index2.js"></script>
+        <script src="assets/js/checkout.js"></script>
+
+    </body>
+
+</html>

@@ -1,0 +1,276 @@
+/* General body styling */
+body {
+    font-family: 'Inter', sans-serif;
+    /* Using Inter font as per instructions */
+    background-color: #333;
+    /* Fallback dark background */
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* Background image from user upload */
+    background-image: linear-gradient(to top, rgba(0, 0, 0, .8) 0, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, .8) 100%), url('../images/signin_background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Keeps background fixed when scrolling */
+}
+
+/* Header styling */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo {
+    color: #e50914;
+    /* Netflix red-like color */
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.header .sign-in-btn {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.header .sign-in-btn:hover {
+    background-color: #e50914;
+    /* Netflix red on hover */
+    border-color: #e50914;
+    color: #fff;
+}
+
+/* Login container to center the card */
+.login-container {
+    height: 100vh;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Login card styling */
+.login-card {
+    background-color: rgba(0, 0, 0, 0.75);
+    /* Semi-transparent dark background */
+    padding: 60px 68px 40px;
+    border-radius: 8px;
+    /* Rounded corners */
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    /* Stronger shadow */
+    margin-bottom: 90px;
+    /* Space from the footer */
+}
+
+.login-card h1 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 28px;
+    text-align: left;
+}
+
+/* --- New styles for Notification Area --- */
+.notification-area {
+    background-color: #e8b603;
+    color: #000000;
+    font-weight: bold;
+    padding: 15px 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.notification-area .notification-text {
+    margin-bottom: 0;
+    /* Remove default paragraph margin */
+}
+
+/* Input field styling */
+.form-control {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    padding: 16px 20px;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-control::placeholder {
+    color: #8c8c8c;
+}
+
+.form-control:focus {
+    background-color: #444;
+    border-color: #0071eb;
+    /* Blue border on focus */
+    box-shadow: none;
+    /* Remove default Bootstrap focus shadow */
+}
+
+/* Password input group with toggle icon */
+.password-input-group {
+    position: relative;
+}
+
+.password-input-group .form-control {
+    padding-right: 50px;
+    /* Make space for the icon */
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8c8c8c;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.password-toggle:hover {
+    color: #fff;
+}
+
+/* Primary button styling */
+.btn-primary {
+    background-color: #e50914;
+    /* Netflix red */
+    border-color: #e50914;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 24px;
+    border-radius: 4px;
+    /* Rounded corners */
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #c40812;
+    /* Darker red on hover */
+    border-color: #c40812;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Form help section (remember me and need help) */
+.form-help {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-top: 10px;
+}
+
+.form-check-input {
+    margin-right: 5px;
+    accent-color: #b3b3b3;
+    /* Color for the checkbox */
+    border-radius: 3px;
+    /* Rounded corners for checkbox */
+}
+
+.form-check-label {
+    color: #b3b3b3;
+}
+
+.need-help {
+    color: #b3b3b3;
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+}
+
+.need-help:hover {
+    text-decoration: underline;
+}
+
+/* Sign-up and reCAPTCHA section */
+.signup-section {
+    margin-top: 20px;
+    color: #8c8c8c;
+    font-size: 1rem;
+}
+
+.signup-link {
+    color: #fff;
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+.signup-section small {
+    display: block;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    margin-top: 15px;
+}
+
+.signup-section .learn-more {
+    color: #0071eb;
+    /* Blue link color */
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+}
+
+.signup-section .learn-more:hover {
+    text-decoration: underline;
+}
+
+/* General responsive adjustments for login card */
+@media (max-width: 768px) {
+    .login-card {
+        padding: 40px 30px;
+        margin-bottom: 50px;
+        max-width: 90%;
+    }
+
+    .header {
+        padding: 15px 20px;
+    }
+
+    .header .logo {
+        font-size: 2rem;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 30px 20px;
+        margin-bottom: 30px;
+        max-width: 95%;
+    }
+
+    .header {
+        padding: 10px 15px;
+    }
+
+    .header .logo {
+        font-size: 1.8rem;
+    }
+}

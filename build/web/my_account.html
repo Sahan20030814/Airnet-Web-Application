@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Airnet - My Account</title>
+        <link rel="icon" href="assets/images/airnet_logo.ico">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/my-account.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
+    </head>
+
+    <body onload="loadOwnMovies();loadOwnTvShows();loadPurchasingItems();loadWatchlistItems();">
+        <!-- Header/Navigation Bar -->
+        <header class="header">
+            <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+                <a href="index.html" class="logo">AIRNET</a>
+
+                <!-- Navigation Links Section -->
+                <nav class="header-nav d-flex align-items-center" style="column-gap: 50px;">
+                    <a href="index.html" class="header-nav-item">Home</a>
+                    <a href="searched_contents.html?content=latestMovies" class="header-nav-item">Movies</a>
+                    <a href="searched_contents.html?content=latestTvShows" class="header-nav-item">TV Shows</a>
+                    <a href="searched_contents.html?content=topRatingMoviesTvShows" class="header-nav-item">Top IMDB</a>
+                    <a href="#" class="header-nav-item">Android App</a>
+                </nav>
+
+                <!-- User Authentication Section -->
+                <div id="auth-section">
+                    <div class="dropdown d-none" id="myAccount_btn">
+                        <button class="btn btn-secondary dropdown-toggle user-dropdown" type="button" id="userDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i> My Account
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item text-center py-1" href="my_account.html">My Account</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-center py-1" href="#" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content container-fluid">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="my-account-breadcrumb p-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">My Account</li>
+                </ol>
+            </nav>
+
+            <div class="account-layout row">
+                <!-- Sidebar for Account Navigation -->
+                <aside class="account-sidebar col-lg-3 col-md-4 col-12">
+                    <h3 class="sidebar-title">Account Settings</h3>
+                    <ul class="list-group sidebar-nav">
+                        <li class="list-group-item">
+                            <a href="#" class="sidebar-link active" data-target="my-profile-content">
+                                <i class="fas fa-user"></i> My Profile
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="sidebar-link" data-target="movies-dramas-content">
+                                <i class="fas fa-film"></i> Movies & Tv Shows
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="sidebar-link" data-target="uploads-content">
+                                <i class="fas fa-upload"></i> Uploads
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="sidebar-link" data-target="movies-listing-content">
+                                <i class="fas fa-list-alt"></i> Movies Listing
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="sidebar-link" data-target="dramas-listing-content">
+                                <i class="fas fa-tv"></i> Tv Shows Listing
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="sidebar-link" data-target="purchasing-content">
+                                <i class="fas fa-credit-card"></i> Purchasing
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="sidebar-link" data-target="watchlist-content">
+                                <i class="fas fa-star"></i> Watchlist
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+
+                <!-- Sidebar Items Content Area -->
+                <section class="account-content col-lg-9 col-md-8 col-12">
+                    <!-- My Profile Content (Default active) -->
+                    <div id="my-profile-content" class="content-section active">
+                        <h2 class="content-title">My Profile</h2>
+
+                        <!-- Upside: User Details -->
+                        <div class="profile-section user-details-section mb-5">
+                            <h3 class="section-subtitle">User Information</h3>
+                            <div class="card profile-card">
+                                <div class="card-body">
+
+                                    <!-- Notification Area - HIGHLIGHTED CHANGE -->
+                                    <div class="notification-area text-center d-none" id="loginNotification">
+                                        <p class="notification-text" id="notification"></p>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="firstName" class="form-label">First Name</label>
+                                            <input type="text" class="form-control bg-secondary text-white border-0"
+                                                   id="firstName" value="">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="lastName" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control bg-secondary text-white border-0"
+                                                   id="lastName" value="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="emailAddress" class="form-label">Email address</label>
+                                        <input type="email" class="form-control bg-secondary text-white border-0"
+                                               id="email" value="" disabled>
+                                    </div>
+                                    <div class="text-end profile-action-row">
+                                        <button class="btn btn-danger" onclick="saveUserDetails();">Save Changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Downside: Account Password Details -->
+                        <div class="profile-section password-details-section">
+                            <h3 class="section-subtitle">Password Change</h3>
+                            <div class="card profile-card">
+                                <div class="card-body">
+
+                                    <!-- Notification Area - HIGHLIGHTED CHANGE -->
+                                    <div class="notification-area text-center d-none" id="loginNotification2">
+                                        <p class="notification-text" id="notification2"></p>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-4 mb-3 mb-lg-0">
+                                            <label for="currentPassword" class="form-label">Current Password</label>
+                                            <div class="position-relative">
+                                                <input type="password"
+                                                       class="form-control bg-secondary text-white border-0"
+                                                       id="currentPassword" disabled>
+                                                <span class="password-toggle"
+                                                      onclick="togglePasswordVisibility('currentPassword')">
+                                                    <i class="fas fa-eye"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 mb-3 mb-lg-0">
+                                            <label for="newPassword" class="form-label">New Password</label>
+                                            <div class="position-relative">
+                                                <input type="password"
+                                                       class="form-control bg-secondary text-white border-0"
+                                                       id="newPassword">
+                                                <span class="password-toggle"
+                                                      onclick="togglePasswordVisibility('newPassword')">
+                                                    <i class="fas fa-eye"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 mb-3 mb-lg-0">
+                                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                            <div class="position-relative">
+                                                <input type="password"
+                                                       class="form-control bg-secondary text-white border-0"
+                                                       id="confirmPassword">
+                                                <span class="password-toggle"
+                                                      onclick="togglePasswordVisibility('confirmPassword')">
+                                                    <i class="fas fa-eye"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-end profile-action-row">
+                                        <button class="btn btn-danger" onclick="savePasswordDetails();">Change Password</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Movies & Dramas Content - Content Registration Form -->
+                    <div id="movies-dramas-content" class="content-section d-none">
+                        <h2 class="content-title">Register your new content</h2>
+                        <div class="card content-card">
+                            <div class="card-body">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control bg-secondary text-white border-0"
+                                           id="content-name" placeholder="Enter movie/tv show name">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control bg-secondary text-white border-0" id="content-description"
+                                              rows="4" placeholder="Enter movie/tv show description"></textarea>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <label class="form-label">Type</label>
+                                        <select class="form-select bg-secondary text-white border-0" id="contentTypeSelector">
+                                            <option value="0" selected>Select Type</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <label class="form-label">Video Quality</label>
+                                        <select class="form-select bg-secondary text-white border-0" id="contentQualitySelector">
+                                            <option value="0" selected>Select Quality</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Price (Rs.)</label>
+                                        <input type="number" class="form-control bg-secondary text-white border-0"
+                                               id="content-price" placeholder="e.g., 9.99" step="1" min="1">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label d-block section-subtitle">Genre</label>
+
+                                    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-2" id="genre-item-list">
+                                        <div class="col" id="genre-item-content">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label" id="genre-item-text"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label d-block section-subtitle">Country</label>
+
+                                    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-2" id="country-item-list">
+                                        <div class="col" id="country-item-content">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label" id="country-item-text"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label d-block section-subtitle">Language</label>
+
+                                    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-2" id="language-item-list">
+                                        <div class="col" id="language-item-content">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label" id="language-item-text"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <label class="form-label">Released Date</label>
+                                        <input type="date" class="form-control bg-secondary text-white border-0"
+                                               id="content-release-at" placeholder="e.g., 2025-02-25">
+                                    </div>
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <label class="form-label">Episodes Count</label>
+                                        <input type="number" class="form-control bg-secondary text-white border-0"
+                                               id="episode-count" placeholder="e.g., 1" step="1" min="1">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Duration (minutes)</label>
+                                        <input type="number" class="form-control bg-secondary text-white border-0"
+                                               id="episode-duration" placeholder="Enter the duration in minutes" step="1" min="1">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Cast</label>
+                                    <input type="text" class="form-control bg-secondary text-white border-0"
+                                           id="content-cast" placeholder="e.g., Actor 1, Actress 2">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Production</label>
+                                    <input type="text" class="form-control bg-secondary text-white border-0"
+                                           id="content-production" placeholder="e.g., Studio Name">
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">YouTube Trailer Link</label>
+                                    <input type="text" class="form-control bg-secondary text-white border-0" id="youtubeTrailerLink">
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-md-6 mb-3 mb-md-0">
+                                        <label class="form-label">Background Image</label>
+                                        <div class="image-upload-area">
+                                            <img id="bgImagePreview"
+                                                 src="https://placehold.co/300x150/333333/ffffff?text=Background+Image"
+                                                 alt="Background Image Preview" class="img-fluid mb-2">
+                                            <input type="file" id="contentBgImg" class="d-none" accept="image/*"
+                                                   onchange="previewImage(event, 'bgImagePreview')">
+                                            <button type="button" class="btn btn-outline-light w-100"
+                                                    onclick="document.getElementById('contentBgImg').click()">Upload
+                                                Background Image</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Card Image</label>
+                                        <div class="image-upload-area">
+                                            <img id="cardImagePreview"
+                                                 src="https://placehold.co/150x225/333333/ffffff?text=Card+Image"
+                                                 alt="Card Image Preview" class="img-fluid mb-2">
+                                            <input type="file" id="contentCardImg" class="d-none" accept="image/*"
+                                                   onchange="previewImage(event, 'cardImagePreview')">
+                                            <button type="button" class="btn btn-outline-light w-100"
+                                                    onclick="document.getElementById('contentCardImg').click()">Upload Card
+                                                Image</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Notification Area - HIGHLIGHTED CHANGE -->
+                                <div class="notification-area text-center d-none" id="loginNotification3">
+                                    <p class="notification-text" id="notification3"></p>
+                                </div>
+
+                                <div class="text-end">
+                                    <button class="btn btn-secondary" onclick="resetRegistrationSection();">Clear All</button>
+                                    <button type="submit" class="btn btn-danger ms-2" id="content-registration-btn" onclick="contentRegistration();">Content Registration</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        </br></br>
+
+                        <h2 class="content-title">Update your content details</h2>
+                        <div class="card content-card">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Select your content</label>
+                                    <select class="form-select bg-secondary text-white border-0" id="updateContentSelector" onchange="updateContentLoading();">
+                                        <option value="0" selected>Select</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control bg-secondary text-white border-0"
+                                           id="update-content-name" placeholder="Enter movie/tv show name" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control bg-secondary text-white border-0" id="update-content-description"
+                                              rows="4" placeholder="Enter movie/tv show description" disabled></textarea>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <label class="form-label">Type</label>
+                                        <select class="form-select bg-secondary text-white border-0" id="updateContentTypeSelector" disabled>
+                                            <option value="0" disabled selected>Select Type</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <label class="form-label">Video Quality</label>
+                                        <select class="form-select bg-secondary text-white border-0" id="updateContentQualitySelector" disabled>
+                                            <option value="0" disabled selected>Select Quality</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Price (Rs.)</label>
+                                        <input type="number" class="form-control bg-secondary text-white border-0"
+                                               id="update-content-price" placeholder="e.g., 9.99" step="1" min="1" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label d-block section-subtitle">Genre</label>
+
+                                    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-2" id="update-genre-item-list">
+                                        <div class="col" id="update-genre-item-content">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" disabled>
+                                                <label class="form-check-label" id="update-genre-item-text"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label d-block section-subtitle">Country</label>
+
+                                    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-2" id="update-country-item-list">
+                                        <div class="col" id="update-country-item-content">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" disabled>
+                                                <label class="form-check-label" id="update-country-item-text">Action</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label d-block section-subtitle">Language</label>
+
+                                    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-2" id="update-language-item-list">
+                                        <div class="col" id="update-language-item-content">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" disabled>
+                                                <label class="form-check-label" id="update-language-item-text"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <label class="form-label">Released Date</label>
+                                        <input type="date" class="form-control bg-secondary text-white border-0"
+                                               id="update-content-release-at" placeholder="e.g., 2025-02-25" disabled>
+                                    </div>
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <label class="form-label">Episodes Count</label>
+                                        <input type="number" class="form-control bg-secondary text-white border-0"
+                                               id="update-content-episode-count" placeholder="e.g., 1" step="1" min="1" disabled>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Duration (minutes)</label>
+                                        <input type="number" class="form-control bg-secondary text-white border-0"
+                                               id="update-content-duration" placeholder="Enter the duration in minutes" step="1" min="1" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Cast</label>
+                                    <input type="text" class="form-control bg-secondary text-white border-0"
+                                           id="update-content-cast" placeholder="e.g., Actor 1, Actress 2" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Production</label>
+                                    <input type="text" class="form-control bg-secondary text-white border-0"
+                                           id="update-content-production" placeholder="e.g., Studio Name" disabled>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">YouTube Trailer Link</label>
+                                    <input type="text" class="form-control bg-secondary text-white border-0" id="updateYoutubeTrailerLink" disabled>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-md-6 mb-3 mb-md-0">
+                                        <label class="form-label">Background Image</label>
+                                        <div class="image-upload-area">
+                                            <img id="updateBgImagePreview"
+                                                 src="https://placehold.co/300x150/333333/ffffff?text=Background+Image"
+                                                 alt="Background Image Preview" class="img-fluid mb-2">
+                                            <input type="file" id="updateContentBgImg" class="d-none" accept="image/*"
+                                                   onchange="previewImage(event, 'updateBgImagePreview')">
+                                            <button type="button" class="btn btn-outline-light w-100"
+                                                    onclick="document.getElementById('updateContentBgImg').click()" id="update-content-bg-img-btn" disabled>Upload
+                                                Background Image</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Card Image</label>
+                                        <div class="image-upload-area">
+                                            <img id="updateCardImagePreview"
+                                                 src="https://placehold.co/150x225/333333/ffffff?text=Card+Image"
+                                                 alt="Card Image Preview" class="img-fluid mb-2">
+                                            <input type="file" id="updateContentCardImg" class="d-none" accept="image/*"
+                                                   onchange="previewImage(event, 'updateCardImagePreview')">
+                                            <button type="button" class="btn btn-outline-light w-100"
+                                                    onclick="document.getElementById('updateContentCardImg').click()" id="update-content-card-img-btn" disabled>Upload Card
+                                                Image</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Notification Area - HIGHLIGHTED CHANGE -->
+                                <div class="notification-area text-center d-none" id="loginNotification4">
+                                    <p class="notification-text" id="notification4"></p>
+                                </div>
+
+                                <div class="text-end">
+                                    <button class="btn btn-secondary" onclick="updateContentLoading();">Reset</button>
+                                    <button class="btn btn-danger ms-2" id="update-content-save-btn" onclick="contentUpdate();" disabled>Save Changes</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Uploads Content - Episode Upload Form -->
+                    <div id="uploads-content" class="content-section d-none">
+                        <h2 class="content-title">Upload your new episode</h2>
+                        <div class="card content-card">
+                            <div class="card-body">
+
+                                <!-- Notification Area - HIGHLIGHTED CHANGE -->
+                                <div class="notification-area text-center d-none" id="loginNotification5">
+                                    <p class="notification-text" id="notification5"></p>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Type</label>
+                                        <select class="form-select bg-secondary text-white border-0" id="episodeContentType" onchange="loadContentOfType();">
+                                            <option value="0" selected>Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Movie/TV Show</label>
+                                        <select class="form-select bg-secondary text-white border-0"
+                                                id="episodeMovieTvSeries" onchange="setEpisodeUploadBtnEnable();">
+                                            <option value="0" selected>Select</option>
+                                            <!-- More options will be dynamically loaded -->
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <label class="form-label">Episode Name</label>
+                                        <input type="text" class="form-control bg-secondary text-white border-0"
+                                               id="registerEpisodeName" placeholder="e.g., Episode 1: The Beginning">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Video File Path</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-secondary text-white border-0"
+                                               id="registerEpisodeFilePath" placeholder="No file selected" readonly>
+                                        <button class="btn btn-outline-light" type="button" id="selectEpisodeBtn"
+                                                onclick="document.getElementById('registerEpisodeFileUpload').click()">Select the
+                                            episode</button>
+                                        <input type="file" id="registerEpisodeFileUpload" class="d-none" accept="video/*"
+                                               onchange="displayFileName(event, 'registerEpisodeFilePath')">
+                                    </div>
+                                </div>
+
+                                <div class="text-end profile-action-row d-flex align-items-center justify-content-end">
+                                    <div class="spinner-border spinner-border text-light d-none" role="status" id="episodeUploadingSnipper"> </div>
+                                    <button class="btn btn-danger ms-3" id="episode-upload-btn" disabled onclick="episodeUploading();">Upload the episode</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        </br></br>
+
+                        <h2 class="content-title">Delete the episode</h2>
+                        <div class="card content-card">
+                            <div class="card-body">
+
+                                <!-- Notification Area - HIGHLIGHTED CHANGE -->
+                                <div class="notification-area text-center d-none" id="loginNotification6">
+                                    <p class="notification-text" id="notification6"></p>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Type</label>
+                                        <select class="form-select bg-secondary text-white border-0" id="deleteEpisodeContentType" onchange="loadDeleteContentOfType();">
+                                            <option value="0" selected>Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Movie/TV Show</label>
+                                        <select class="form-select bg-secondary text-white border-0"
+                                                id="deleteEpisodeMovieTvSeries" onchange="loadDeleteEpisodeOfContent();">
+                                            <option value="0" selected>Select</option>
+                                            <!-- More options will be dynamically loaded -->
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <label class="form-label">Episode</label>
+                                        <select class="form-select bg-secondary text-white border-0" id="deletedEpisode" onchange="setEpisodeDeleteBtnEnable();">
+                                            <option value="0" selected>Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="text-end profile-action-row">
+                                    <button class="btn btn-danger" id="episode-delete-btn" disabled onclick="episodeDeleting();">Delete the episode</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Movies Listing Content -->
+                    <div id="movies-listing-content" class="content-section d-none">
+                        <h2 class="content-title">My Registered Movies</h2>
+                        <div class="card content-card">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-secondary text-white border-0"
+                                               placeholder="Search movies by name" id="own-movie-search-bar">
+                                        <button class="btn btn-outline-light" type="button" onclick="loadOwnMovies();">Search</button>
+                                    </div>
+                                </div>
+
+                                <!-- Message when no movies are uploaded -->
+                                <p id="noMoviesMessage" class="text-center d-none">No movies were found yet!</p>
+
+                                <div class="table-responsive" id="ownMovieTable">
+                                    <table class="table table-hover movie-listing-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No.</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Genre</th>
+                                                <th scope="col">Language</th>
+                                                <th scope="col">Country</th>
+                                                <th scope="col">Quality</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Status</th> <!-- New Status Column -->
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="own-movie-table-body">
+
+                                            <tr class="d-none" id="own-movie-table-row">
+                                                <td id="own-movie-number">1</td>
+                                                <td><a href="#" id="own-movie-img-a"><img id="own-movie-img" src="https://placehold.co/80x120/333333/ffffff?text=Movie+1" alt="Movie 1" class="img-fluid movie-thumb"></a></td>
+                                                <td id="own-movie-name"></td>
+                                                <td id="own-movie-genre"></td>
+                                                <td id="own-movie-language"></td>
+                                                <td id="own-movie-country"></td>
+                                                <td id="own-movie-quality"></td>
+                                                <td id="own-movie-price"></td>
+                                                <td id="own-movie-status"></td> <!-- Sample Status -->
+                                                <td>
+                                                    <button class="btn btn-info btn-sm me-2" id="own-movie-view-users-btn">View Users</button>
+                                                    <button class="btn btn-warning btn-sm" id="own-movie-update-btn">Update</button>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Movies/Tv Shows Buyers Listing Content -->
+                    <div id="buyers-listing-content" class="content-section d-none">
+                        <h2 class="content-title" id="content-users-list-title">Users List</h2>
+                        <div class="card content-card">
+                            <div class="card-body">
+
+                                <div class="mb-4">
+                                    <a class="go-back-btn fw-bold" href="#" id="content-users-list-goback-a">Go back</a>
+                                </div>
+
+                                <div class="mb-4">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-secondary text-white border-0"
+                                               placeholder="Search users by invoice number" id="users-content-search-bar">
+                                        <button class="btn btn-outline-light" type="button" onclick="loadBuyingUsers();">Search</button>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between mb-2">
+                                    <label class="form-label text-danger fw-bold" id="content-users-list-user-count">Users Count: 0</label>
+                                    <label class="form-label text-success fw-bold" id="content-users-list-seller-profit">Total Seller Profit: Rs. 0.00</label>
+                                </div>
+
+                                <!-- Message when no movies are uploaded -->
+                                <p id="noContentUsersMessage" class="text-center d-none">No users were brought selected content yet!
+                                </p>
+
+                                <div class="table-responsive" id="contentUsersTable">
+                                    <table class="table table-hover movie-listing-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">INV_No.</th>
+                                                <th scope="col">DATE</th>
+                                                <th scope="col">TIME</th>
+                                                <th scope="col">USER EMAIL ADDRESS</th>
+                                                <th scope="col">CONTENT PRICE (Rs.)</th>
+                                                <th scope="col">SITE RATE</th>
+                                                <th scope="col">SELLER PRICE (Rs.)</th>
+                                                <th scope="col">SITE PRICE (Rs.)</th>
+                                                <th scope="col">ACTIONS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="content-users-list-table-body">
+                                            <tr class="d-none" id="content-users-list-table-row">
+                                                <td id="content-users-list-invoice-number">1</td>
+                                                <td id="content-users-list-invoice-date">2025-02-18</td>
+                                                <td id="content-users-list-invoice-time">08:18:53 PM</td>
+                                                <td id="content-users-list-email">dammikadahanayaka69@gmail.com</td>
+                                                <td id="content-users-list-price">$14.99</td>
+                                                <td id="content-users-list-rate">15%</td>
+                                                <td id="content-users-list-seller-price">$14.99</td>
+                                                <td id="content-users-list-site-price">$14.99</td>
+                                                <td><a class="btn btn-info btn-sm me-2" href="#" id="content-users-list-invoice-btn">Invoice</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dramas Listing Content -->
+                    <div id="dramas-listing-content" class="content-section d-none">
+                        <h2 class="content-title">My Registered TV Shows</h2>
+                        <div class="card content-card">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-secondary text-white border-0"
+                                               placeholder="Search TV series by name" id="own-tv-show-search-bar">
+                                        <button class="btn btn-outline-light" type="button" onclick="loadOwnTvShows();">Search</button>
+                                    </div>
+                                </div>
+
+                                <!-- Message when no TV series are uploaded -->
+                                <p id="noTvShowMessage" class="text-center d-none">No TV Shows were found yet!</p>
+
+                                <div class="table-responsive" id="ownTvShowTable">
+                                    <table class="table table-hover movie-listing-table">
+                                        <!-- Reusing movie-listing-table for consistent styling -->
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No.</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Genre</th>
+                                                <th scope="col">Language</th>
+                                                <th scope="col">Country</th>
+                                                <th scope="col">Quality</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">EPI</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="own-tv-show-table-body">
+                                            <tr class="d-none" id="own-tv-show-table-row">
+                                                <td id="own-tv-show-number"></td>
+                                                <td><a href="#" id="own-tv-show-img-a"><img id="own-tv-show-img" src="https://placehold.co/80x120/333333/ffffff?text=Series+1" alt="TV Series 1" class="img-fluid movie-thumb"></a></td>
+                                                <td id="own-tv-show-name"></td>
+                                                <td id="own-tv-show-genre"></td>
+                                                <td id="own-tv-show-language"></td>
+                                                <td id="own-tv-show-country"></td>
+                                                <td id="own-tv-show-quality"></td>
+                                                <td id="own-tv-show-price"></td>
+                                                <td id="own-tv-show-episodes"></td>
+                                                <td id="own-tv-show-status"></td>
+                                                <td>
+                                                    <button class="btn btn-info btn-sm me-2" id="own-tv-show-view-users-btn">View Users</button>
+                                                    <button class="btn btn-warning btn-sm" id="own-tv-show-update-btn">Update</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Purchasing Content -->
+                    <div id="purchasing-content" class="content-section d-none">
+                        <h2 class="content-title">My Purchased Items</h2>
+                        <div class="card content-card">
+                            <div class="card-body">
+                                <div class="row mb-4">
+                                    <div class="col-md-8 col-lg-10 mb-3 mb-md-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bg-secondary text-white border-0"
+                                                   placeholder="Search purchased items by name..." id="purchasing-items-search-bar">
+                                            <button class="btn btn-outline-light" type="button" onclick="loadPurchasingItems();">Search</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-lg-2">
+                                        <select class="form-select bg-secondary text-white border-0 mt-1"
+                                                id="purchasingOrder"
+                                                onchange="loadPurchasingItems();">
+                                            <option value="1">Date: ASC</option>
+                                            <option value="2" selected>Date: DESC</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Message when no purchased items are uploaded -->
+                                <p id="noPurchasingMessage" class="text-center d-none">No purchased items were found yet!</p>
+
+                                <div class="table-responsive" id="purchasingItemsTable">
+                                    <table class="table table-hover movie-listing-table">
+                                        <!-- Reusing movie-listing-table for consistent styling -->
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">IV_No.</th>
+                                                <th scope="col">ITEM_No.</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Type</th>
+                                                <th scope="col">Episodes</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="purchasing-item-table-body">
+                                            <tr class="d-none" id="purchasing-item-table-row">
+                                                <td id="purchasing-item-invoice-number">INV001</td>
+                                                <td id="purchasing-item-item-number">1</td>
+                                                <td><a href="#" id="purchasing-item-img-a"><img id="purchasing-item-img" src="https://placehold.co/80x120/333333/ffffff?text=Movie+A" alt="Movie A" class="img-fluid movie-thumb"></a></td>
+                                                <td id="purchasing-item-name">Interstellar</td>
+                                                <td id="purchasing-item-content-type">Movie</td>
+                                                <td id="purchasing-item-episodes">N/A</td>
+                                                <td id="purchasing-item-price">$14.99</td>
+                                                <td id="purchasing-item-date">2023-01-15</td>
+                                                <td>
+                                                    <a class="btn btn-info btn-sm d-none" href="#" id="purchasing-item-invoice-btn">Invoice</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HIGHLIGHT START -->
+                    <!-- Watchlist Content -->
+                    <div id="watchlist-content" class="content-section d-none">
+                        <h2 class="content-title">Watchlist</h2>
+                        <div class="card content-card">
+                            <div class="card-body">
+                                <div class="row mb-4 align-items-center">
+                                    <div class="col-md-8 col-lg-10 mb-3 mb-md-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bg-secondary text-white border-0"
+                                                   placeholder="Search watchlist items by name..." id="watchlist-items-search-bar">
+                                            <button class="btn btn-outline-light" type="button" onclick="loadWatchlistItems();">Search</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-lg-2 mb-3 mb-md-0">
+                                        <select class="form-select bg-secondary text-white border-0"
+                                                id="watchlistContentType" onchange="loadWatchlistItems();">
+                                            <option value="0" selected>All Types</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Message when no watchlist items are present -->
+                                <p id="noWatchlistMessage" class="text-center d-none">No watchlist items were found yet!</p>
+
+                                <div class="col-12 text-end" id="watchlist-delete-all-btn">
+                                    <a href="#" class="delete-all-btn text-decoration-none fw-bold" onclick="deleteAllWatchlistItem();">Delete All</a>
+                                </div>
+
+                                <div class="table-responsive" id="watchlistItemsTable">
+                                    <table class="table table-hover movie-listing-table">
+                                        <!-- Reusing movie-listing-table for consistent styling -->
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">No.</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Type</th>
+                                                <th scope="col">Genre</th>
+                                                <th scope="col">Language</th>
+                                                <th scope="col">Country</th>
+                                                <th scope="col">Quality</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="watchlist-item-table-body">
+                                            <tr class="d-none" id="watchlist-item-table-row">
+                                                <td id="watchlist-item-number">1</td>
+                                                <td><a href="#" id="watchlist-item-img-a"><img id="watchlist-item-img" src="https://placehold.co/80x120/333333/ffffff?text=WL+1" alt="Watchlist Item 1" class="img-fluid movie-thumb"></a></td>
+                                                <td id="watchlist-item-name">The Matrix</td>
+                                                <td id="watchlist-item-content-type">Movie</td>
+                                                <td id="watchlist-item-genre">Sci-Fi, Action</td>
+                                                <td id="watchlist-item-language">English</td>
+                                                <td id="watchlist-item-country">USA</td>
+                                                <td id="watchlist-item-quality">HD</td>
+                                                <td id="watchlist-item-price">$12.99</td>
+                                                <td><button class="btn btn-danger btn-sm" id="watchlist-item-delete-btn"><i
+                                                            class="fas fa-trash-alt"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- HIGHLIGHT END -->
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer section -->
+        <div class="footer">
+            <div class="footer-content">
+                <p class="mb-4">Questions? Call <a href="#" class="footer-link">+94 77 523 8185</a></p>
+                <div class="row footer-links">
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">FAQ</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">Help Center</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">Terms of Use</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">Privacy</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-2">
+                        <a href="#" class="footer-link">Cookie Preferences</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-2">
+                        <a href="#" class="footer-link">Corporate Information</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer section -->
+
+        <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
+        <script src="assets/js/check_index2.js"></script>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcOdihg7paX5Mtsw4sQ"
+        crossorigin="anonymous"></script>
+        <script>
+
+                                        document.addEventListener('DOMContentLoaded', () => {
+                                            setupSidebarNavigation();
+                                        });
+
+                                        function navigateToContent(targetId, contentId, typeId) {
+                                            const sidebarLinks = document.querySelectorAll('.account-sidebar .sidebar-link');
+                                            const contentSections = document.querySelectorAll('.account-content .content-section');
+
+                                            // Remove 'active' class from all links and hide all content sections
+                                            sidebarLinks.forEach(item => item.classList.remove('active'));
+                                            contentSections.forEach(section => section.classList.add('d-none'));
+
+                                            // Show the target content section
+                                            const targetContent = document.getElementById(targetId);
+                                            if (targetContent) {
+                                                targetContent.classList.remove('d-none');
+                                            }
+
+                                            // Find and activate the corresponding sidebar link
+                                            const targetLink = document.querySelector(`.account-sidebar .sidebar-link[data-target="${targetId}"]`);
+                                            if (targetLink) {
+                                                targetLink.classList.add('active');
+                                            }
+
+                                        }
+
+                                        function setupSidebarNavigation() {
+                                            const sidebarLinks = document.querySelectorAll('.account-sidebar .sidebar-link');
+
+                                            sidebarLinks.forEach(link => {
+                                                link.addEventListener('click', function (e) {
+                                                    e.preventDefault(); // Prevent default link behavior
+                                                    const targetId = this.getAttribute('data-target');
+                                                    navigateToContent(targetId, null, null); // Use the new function
+                                                });
+                                            });
+                                        }
+
+                                        // Function to toggle password visibility
+                                        function togglePasswordVisibility(fieldId) {
+                                            const passwordField = document.getElementById(fieldId);
+                                            const toggleIcon = passwordField.nextElementSibling.querySelector('i'); // Get the <i> element inside the next sibling (span.password-toggle)
+
+                                            if (passwordField.type === 'password') {
+                                                passwordField.type = 'text';
+                                                toggleIcon.classList.remove('fa-eye');
+                                                toggleIcon.classList.add('fa-eye-slash');
+                                            } else {
+                                                passwordField.type = 'password';
+                                                toggleIcon.classList.remove('fa-eye-slash');
+                                                toggleIcon.classList.add('fa-eye');
+                                            }
+                                        }
+
+                                        // Function to preview uploaded images
+                                        function previewImage(event, previewId) {
+                                            const reader = new FileReader();
+                                            reader.onload = function () {
+                                                const output = document.getElementById(previewId);
+                                                output.src = reader.result;
+                                            };
+                                            reader.readAsDataURL(event.target.files[0]);
+                                        }
+
+                                        // Function to display selected file name in input field
+                                        function displayFileName(event, inputId) {
+                                            const inputField = document.getElementById(inputId);
+                                            if (event.target.files.length > 0) {
+                                                inputField.value = event.target.files[0].name;
+                                            } else {
+                                                inputField.value = "No file selected";
+                                            }
+                                        }
+
+        </script>
+
+        <script src="assets/js/my_account.js"></script>
+
+    </body>
+
+</html>

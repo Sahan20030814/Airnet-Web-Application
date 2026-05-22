@@ -1,0 +1,442 @@
+/* Define CSS variables for common heights/paddings */
+:root {
+    --header-height: 80px;
+    /* Approximate header height */
+    --main-content-padding-top: 20px;
+    --main-content-padding-bottom: 50px;
+    --footer-height-approx: 180px;
+    /* Approximate footer height for calculation */
+}
+
+/* General body styling */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #141414;
+    /* Dark background like Netflix */
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+}
+
+/* Header/Navigation Bar */
+.header {
+    background-color: #141414;
+    /* Solid dark background */
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    /* Fixed height for header */
+}
+
+.header .logo {
+    color: #e50914;
+    /* Netflix red */
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+/* HIGHLIGHT START */
+/* Header Search Controls */
+.header-search-controls {
+    flex-grow: 1;
+    /* Allow to take available space */
+    justify-content: center;
+    /* Center items horizontally */
+    max-width: 800px;
+    /* Limit overall width of search controls */
+}
+
+.header-search-controls .header-search-bar {
+    max-width: 550px;
+    /* Max width for search input */
+    flex-grow: 1;
+}
+
+.header-search-controls .form-control {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px 0 0 4px;
+    /* Rounded left side */
+    height: 42px;
+    /* Ensure consistent height with buttons/selects */
+}
+
+.header-search-controls .form-control::placeholder {
+    color: #b3b3b3;
+}
+
+.header-search-controls .form-control:focus {
+    background-color: #444;
+    border-color: #e50914;
+    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+    outline: none;
+}
+
+.header-search-controls .btn-outline-light {
+    border-color: #555;
+    color: #fff;
+    background-color: #444;
+    border-radius: 0 4px 4px 0;
+    /* Rounded right side */
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    height: 42px;
+    /* Ensure consistent height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    /* For the cart icon link */
+}
+
+.header-search-controls .btn-outline-light:hover {
+    background-color: #e50914;
+    /* Netflix red on hover */
+    border-color: #e50914;
+    color: #fff;
+}
+
+.header-search-controls .header-cart-icon,
+.header-search-controls .header-advanced-search-btn {
+    background-color: transparent;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    height: 42px;
+    /* Ensure consistent height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    /* For the cart icon link */
+}
+
+.header-search-controls .header-cart-icon:hover,
+.header-search-controls .header-advanced-search-btn:hover {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+/* HIGHLIGHT END */
+
+/* Sign In Button / User Dropdown */
+.sign-in-btn {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.sign-in-btn:hover {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+.user-dropdown {
+    background-color: #e50914;
+    border-color: #e50914;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: 500;
+    color: #fff;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.user-dropdown:hover {
+    background-color: #c40812;
+    border-color: #c40812;
+    color: #fff;
+}
+
+.dropdown-menu-dark {
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid #333;
+}
+
+.dropdown-menu-dark .dropdown-item {
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.dropdown-menu-dark .dropdown-item:hover {
+    background-color: #e50914;
+    color: #fff;
+}
+
+.dropdown-divider {
+    border-top: 1px solid #444;
+}
+
+/* HIGHLIGHT START */
+/* Footer styling - Restored */
+.footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 30px 40px;
+    width: 100%;
+    color: #757575;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    border-top: 1px solid #222;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-content p {
+    margin-bottom: 20px;
+}
+
+.footer-link {
+    color: #757575;
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Header responsiveness */
+@media (max-width: 992px) {
+    .header {
+        padding: 15px;
+        flex-direction: column;
+        /* Stack logo, search controls, auth vertically */
+        align-items: center;
+        height: auto;
+        /* Allow header height to adjust */
+    }
+
+    .header .logo {
+        margin-bottom: 15px;
+        width: 100%;
+
+        /* Space below logo */
+    }
+
+    .header-search-controls {
+        flex-direction: column;
+        /* Stack search bar, cart, advanced search vertically */
+        width: 100%;
+        margin-bottom: 15px;
+        /* Space below search controls */
+    }
+
+    .header-search-controls .header-search-bar {
+        width: 100%;
+        max-width: none;
+        /* Remove max-width constraint */
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+        /* Space below search bar */
+    }
+
+    .header-search-controls .header-cart-icon,
+    .header-search-controls .header-advanced-search-btn {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+        /* Space between icons */
+    }
+
+    .header-search-controls .header-advanced-search-btn {
+        margin-bottom: 0 !important;
+        /* No margin after last icon */
+    }
+
+    #auth-section {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .header {
+        padding: 10px;
+    }
+
+    .header .logo {
+        font-size: 2rem;
+    }
+
+    .footer {
+        padding: 20px;
+    }
+
+    .footer-links .col-6 {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .header {
+        padding: 10px;
+    }
+
+    .sign-in-btn,
+    .user-dropdown {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        padding: 15px;
+    }
+}
+
+/* NEW STYLES FOR MAIN CONTENT AREA */
+/* Main Content Styling */
+main.container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.content-price {
+    color: #e50914;
+}
+
+.checkout-products-card,
+.order-summary-card {
+    background-color: #1c1c1c;
+    border: 1px solid #333;
+}
+
+.order-summary-title {
+    color: #e50914;
+}
+
+.product-details-list li {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #b3b3b3;
+    ;
+}
+
+.product-details-list strong {
+    color: #fff;
+    margin-right: 5px;
+}
+
+.summary-card,
+.checkout-form-card {
+    background-color: #1c1c1c;
+    border: 1px solid #333;
+}
+
+.list-group-item {
+    background-color: transparent;
+    border-color: #333;
+    color: #fff;
+}
+
+.total-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #e50914;
+}
+
+.form-label {
+    color: #fff;
+    font-weight: 500;
+}
+
+.form-control {
+    background-color: #2a2a2a;
+    border: 1px solid #555;
+    color: #fff;
+}
+
+.form-control::placeholder {
+    color: #b3b3b3;
+}
+
+.form-control:focus {
+    background-color: #333;
+    border-color: #e50914;
+    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+    outline: none;
+}
+
+.checkout-btn {
+    background-color: #e50914;
+    border: none;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+.checkout-btn:hover {
+    background-color: #c40812;
+}
+
+/* HIGHLIGHT START */
+/* Styling for the new payment method section */
+.payment-method-card {
+    background-color: #2a2a2a;
+    border: 1px solid #333;
+}
+
+.payment-method-card .form-check-label {
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.payment-method-card .form-check-input {
+    background-color: #555;
+    border-color: #888;
+}
+
+.payment-method-card .form-check-input:checked {
+    background-color: #e50914;
+    border-color: #e50914;
+}
+
+.payment-logos {
+    height: 25px;
+    width: auto;
+}
+
+/* HIGHLIGHT END */
+
+/* Responsive adjustments for main content */
+@media (max-width: 992px) {
+    .order-lg-2 {
+        order: 1 !important;
+    }
+
+    .order-lg-1 {
+        order: 2 !important;
+    }
+
+    .summary-card,
+    .checkout-form-card {
+        margin-bottom: 20px;
+    }
+}

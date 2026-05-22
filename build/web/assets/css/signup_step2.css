@@ -1,0 +1,267 @@
+/* General body styling */
+body {
+    font-family: 'Inter', sans-serif;
+    /* Using Inter font */
+    background-color: #333;
+    /* Fallback dark background */
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* Background image from user upload */
+    background-image: linear-gradient(to top, rgba(0, 0, 0, .8) 0, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, .8) 100%), url('../images/signin_background.jpg');
+    /* Using the provided background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Keeps background fixed when scrolling */
+}
+
+/* Header styling */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo {
+    color: #e50914;
+    /* Netflix red-like color */
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.header .sign-in-btn {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.header .sign-in-btn:hover {
+    background-color: #e50914;
+    /* Netflix red on hover */
+    border-color: #e50914;
+    color: #fff;
+}
+
+/* Sign-up container to center the card */
+.signup-container {
+    height: 100vh;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+    /* Increased width for the container */
+    max-width: 900px;
+    /* Adjust as needed, was effectively limited by card max-width */
+    width: 100%;
+    /* Ensure it takes full width up to max-width */
+    margin: 0 auto;
+    /* Center the container itself */
+}
+
+/* Sign-up card styling (general parts) */
+.signup-card {
+    background-color: rgba(0, 0, 0, 0.75);
+    /* Semi-transparent dark background */
+    padding: 60px 68px 40px;
+    border-radius: 8px;
+    /* Rounded corners */
+    width: 100%;
+    max-width: 450px;
+    /* Default max-width for smaller cards */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    /* Stronger shadow */
+    margin-bottom: 90px;
+    /* Space from the footer */
+    text-align: left;
+    /* Align content to the left */
+}
+
+.signup-card .step-text {
+    color: #8c8c8c;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.signup-card h1 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.signup-card h2 {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Primary button styling */
+.btn-primary {
+    background-color: #e50914;
+    /* Netflix red */
+    border-color: #e50914;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 24px;
+    border-radius: 4px;
+    /* Rounded corners */
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: #c40812;
+    /* Darker red on hover */
+    border-color: #c40812;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer styling */
+.footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Darker semi-transparent background */
+    padding: 30px 40px;
+    width: 100%;
+    color: #757575;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    /* Pushes footer to the bottom */
+    border-top: 1px solid #222;
+    /* Subtle top border */
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-link {
+    color: #757575;
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments for footer links using Bootstrap grid */
+@media (max-width: 768px) {
+    .footer-links .col-md-3 {
+        width: 33.333%;
+        /* 3 links per row on tablets */
+    }
+
+    .signup-card {
+        padding: 40px 30px;
+        margin-bottom: 50px;
+        max-width: 90%;
+    }
+
+    .header {
+        padding: 15px 20px;
+    }
+
+    .header .logo {
+        font-size: 2rem;
+    }
+
+    .footer {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-links .col-md-3 {
+        width: 50%;
+        /* 2 links per row on mobile */
+    }
+
+    .signup-card {
+        padding: 30px 20px;
+        margin-bottom: 30px;
+        max-width: 95%;
+    }
+
+    .header {
+        padding: 10px 15px;
+    }
+
+    .header .logo {
+        font-size: 1.8rem;
+    }
+
+    .signup-card h1 {
+        font-size: 1.8rem;
+    }
+
+    .signup-card h2 {
+        font-size: 1rem;
+    }
+}
+
+/* --- Styles for Step 2: Policies View --- */
+.policy-view-card {
+    max-width: 700px;
+    /* Increased max-width for policy text */
+}
+
+.policy-content p {
+    color: #b3b3b3;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.policy-content .policy-link {
+    color: #0071eb;
+    /* Blue link color */
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+}
+
+.policy-content .policy-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments for policy view card */
+@media (max-width: 768px) {
+    .policy-view-card {
+        padding: 40px 30px;
+    }
+
+    .policy-content p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .policy-view-card {
+        padding: 30px 20px;
+    }
+
+    .policy-content p {
+        font-size: 0.9rem;
+    }
+}

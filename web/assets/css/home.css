@@ -1,0 +1,975 @@
+/* Define CSS variables for common heights/paddings */
+:root {
+    --header-height: 80px;
+    /* Approximate header height */
+    --main-content-padding-top: 20px;
+    --main-content-padding-bottom: 50px;
+    --footer-height-approx: 180px;
+    /* Approximate footer height for calculation */
+}
+
+/* General body styling */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #141414;
+    /* Dark background like Netflix */
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+    /* CSS Variable for sidebar width, controlled by JS */
+    --sidebar-current-width: 250px;
+}
+
+/* Header/Navigation Bar */
+.header {
+    background-color: #141414;
+    /* Solid dark background */
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    /* Fixed height for header */
+}
+
+.header .logo {
+    color: #e50914;
+    /* Netflix red */
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+/* HIGHLIGHT START */
+/* Header Search Controls */
+.header-search-controls {
+    flex-grow: 1;
+    /* Allow to take available space */
+    justify-content: center;
+    /* Center items horizontally */
+    max-width: 992px;
+    /* Limit overall width of search controls */
+}
+
+.header-search-controls .header-search-bar {
+    max-width: 550px;
+    /* Max width for search input */
+    flex-grow: 1;
+}
+
+.header-search-controls .form-control {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px 0 0 4px;
+    /* Rounded left side */
+    height: 42px;
+    /* Ensure consistent height with buttons/selects */
+}
+
+.header-search-controls .form-control::placeholder {
+    color: #b3b3b3;
+}
+
+.header-search-controls .form-control:focus {
+    background-color: #444;
+    border-color: #e50914;
+    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+    outline: none;
+}
+
+.header-search-controls .btn-outline-light {
+    border-color: #555;
+    color: #fff;
+    background-color: #444;
+    border-radius: 0 4px 4px 0;
+    /* Rounded right side */
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    height: 42px;
+    /* Ensure consistent height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-search-controls .btn-outline-light:hover {
+    background-color: #e50914;
+    /* Netflix red on hover */
+    border-color: #e50914;
+    color: #fff;
+}
+
+.header-search-controls .header-cart-icon,
+.header-search-controls .header-advanced-search-btn {
+    background-color: transparent;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    height: 42px;
+    /* Ensure consistent height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    /* For the cart icon link */
+}
+
+.header-search-controls .header-cart-icon:hover,
+.header-search-controls .header-advanced-search-btn:hover {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+/* HIGHLIGHT END */
+
+/* Sign In Button / User Dropdown */
+.sign-in-btn {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.sign-in-btn:hover {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+.user-dropdown {
+    background-color: #e50914;
+    border-color: #e50914;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: 500;
+    color: #fff;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.user-dropdown:hover {
+    background-color: #c40812;
+    border-color: #c40812;
+    color: #fff;
+}
+
+.dropdown-menu-dark {
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid #333;
+}
+
+.dropdown-menu-dark .dropdown-item {
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.dropdown-menu-dark .dropdown-item:hover {
+    background-color: #e50914;
+    color: #fff;
+}
+
+.dropdown-divider {
+    border-top: 1px solid #444;
+}
+
+/* Main Content Area Layout */
+.content-layout {
+    flex-grow: 1;
+    /* Allows main content to fill remaining vertical space */
+    padding-top: var(--main-content-padding-top);
+    padding-bottom: var(--main-content-padding-bottom);
+    display: flex;
+    /* Make it a flex container for its row child */
+    flex-direction: column;
+}
+
+/* Ensure sidebar and content area height alignment */
+.content-layout>.row {
+    flex-grow: 1;
+    /* Make the row fill the main-content space */
+    align-items: flex-start;
+    /* Align items to the top, not stretch */
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    height: calc(100vh - 120px);
+    /* Adjust height to enable scrolling */
+    position: sticky;
+    top: 100px;
+    transition: width 0.3s ease, padding 0.3s ease;
+    overflow-y: auto;
+    /* HIGHLIGHTED CHANGE: Add vertical scrollbar */
+    overflow-x: hidden;
+    /* Hide horizontal overflow */
+    flex-shrink: 0;
+}
+
+/* Custom Scrollbar for Sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #e50914;
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #c40812;
+}
+
+/* Sidebar Categories (Top IMDB, Movies, TV Shows) */
+.sidebar-title {
+    color: #e50914;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding-top: 5px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.sidebar-nav li {
+    margin-bottom: 10px;
+}
+
+.sidebar-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.sidebar-link:hover {
+    color: #e50914;
+    transform: translateX(5px);
+}
+
+.sidebar-link .fas,
+.sidebar-link .fab {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+/* Filter Group Toggle Buttons (Genre, Country) */
+.btn-toggle-filter {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-toggle-filter:hover {
+    background-color: #555;
+}
+
+.btn-toggle-filter:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.btn-toggle-filter .float-end {
+    transition: transform 0.2s ease;
+}
+
+.btn-toggle-filter.collapsed .float-end {
+    transform: rotate(-90deg);
+}
+
+/* Genre and Country Text Tags (not buttons) */
+.genre-tags,
+.country-tags {
+    display: grid;
+    /* Use grid for two columns */
+    grid-template-columns: repeat(2, 1fr);
+    /* Two columns, equal width */
+    gap: 8px 10px;
+    /* Row gap, column gap */
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.filter-text-tag {
+    color: #fff;
+    /* White text color */
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 4px 0;
+    /* Minimal padding for text links */
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    /* Prevent text from breaking */
+    overflow: hidden;
+    /* Hide overflow */
+    text-overflow: ellipsis;
+    /* Add ellipsis if text overflows */
+    display: block;
+    /* Ensure it takes full grid cell width */
+}
+
+.filter-text-tag:hover {
+    color: #e50914;
+    cursor: pointer;
+    /* Red on hover */
+}
+
+/* Hero Carousel */
+.hero-carousel {
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-item {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 600px;
+    text-align: left;
+    left: 10%;
+    right: auto;
+    bottom: auto;
+    transform: translateY(0);
+}
+
+.carousel-caption h5 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.carousel-caption p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.carousel-caption .btn-danger {
+    background-color: #e50914;
+    border-color: #e50914;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.carousel-caption .btn-danger:hover {
+    background-color: #c40812;
+    border-color: #c40812;
+}
+
+/* Main Content Grid (for movie rows) */
+.main-content-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.select-all-btn {
+    color: rgb(222, 0, 0);
+}
+
+.select-all-btn:hover {
+    color: rgb(255, 0, 0);
+}
+
+.select-all-btn:active {
+    color: #ba0505;
+}
+
+/* Section Titles */
+.section-title {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-left: 5px solid #e50914;
+    padding-left: 15px;
+}
+
+/* Trending Movies/TV Shows Toggle Buttons */
+.trending-toggle .btn {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 0;
+    /* Remove individual button rounding */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.trending-toggle .btn:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.trending-toggle .btn:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.trending-toggle .btn.active {
+    background-color: #e50914;
+    /* Red for active button */
+    border-color: #e50914;
+    color: #fff;
+}
+
+.trending-toggle .btn:hover:not(.active) {
+    background-color: #555;
+    border-color: #777;
+}
+
+/* Movie/TV Show Content Rows (Grid Layout) */
+.movies-grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.movie-card {
+    width: auto;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.movie-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8);
+}
+
+.movie-card .btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    font-weight: 500;
+    flex-grow: 1;
+    /* Allow buttons to grow */
+    min-width: 100px;
+    /* Minimum width for buttons */
+}
+
+/* Custom Scrollbar for horizontal rows */
+.movies-grid-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.movies-grid-container::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 10px;
+}
+
+.movies-grid-container::-webkit-scrollbar-thumb {
+    background: #e50914;
+    border-radius: 10px;
+}
+
+.movies-grid-container::-webkit-scrollbar-thumb:hover {
+    background: #c40812;
+}
+
+.movie-thumbnail-wrapper {
+    position: relative;
+    width: 100%;
+    /* HIGHLIGHT START */
+    height: 240px;
+    /* Adjusted height to maintain aspect ratio with 4 columns */
+    /* HIGHLIGHT END */
+    overflow: hidden;
+}
+
+.movie-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover .movie-thumbnail {
+    transform: scale(1.05);
+}
+
+/* Watchlist Star Icon */
+.watchlist-star {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.8rem;
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s ease, transform 0.2s ease;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.watchlist-star:hover {
+    transform: scale(1.1);
+}
+
+.watchlist-star.active {
+    color: #FFD700;
+    /* Gold color when active (filled) */
+}
+
+.movie-info {
+    padding: 15px;
+    text-align: left;
+    background-color: #141414;
+}
+
+.movie-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movie-details {
+    font-size: 0.9rem;
+    color: #b3b3b3;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+/* Movie Action Buttons (Buy Now and Add to Cart) */
+.movie-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.buy-now-btn,
+.add-to-cart-btn {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.add-to-cart-btn {
+    background-color: #333;
+    border-color: #555;
+}
+
+.buy-now-btn:hover {
+    background-color: #c40812;
+    border-color: #c40812;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #555;
+    border-color: #777;
+}
+
+.buy-now-btn .fas,
+.add-to-cart-btn .fas {
+    margin-right: 8px;
+}
+
+/* Footer styling */
+.footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 30px 40px;
+    width: 100%;
+    color: #757575;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    border-top: 1px solid #222;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-content p {
+    margin-bottom: 20px;
+}
+
+.footer-link {
+    color: #757575;
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .header {
+        padding: 15px 20px;
+    }
+
+    .header-center-items {
+        gap: 15px;
+    }
+
+    .search-bar {
+        max-width: 400px;
+    }
+
+    .hero-carousel {
+        height: 370px;
+    }
+
+    .carousel-item {
+        height: 370px;
+    }
+
+    .carousel-caption h5 {
+        font-size: 2.5rem;
+    }
+
+    .carousel-caption p {
+        font-size: 1rem;
+    }
+
+    .carousel-caption {
+        padding: 20px;
+        max-width: 500px;
+        left: 5%;
+        right: auto;
+    }
+
+    .content-layout {
+        grid-template-columns: var(--sidebar-current-width) 1fr;
+        gap: 20px;
+    }
+
+    .sidebar {
+        padding: 15px;
+        top: 80px;
+        height: calc(100vh - 100px);
+        /* Adjusted height for tablets */
+    }
+
+    .sidebar-title {
+        font-size: 1.3rem;
+    }
+
+    .filter-text-tag,
+    .advanced-filter-btn {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .movies-grid-container {
+        grid-template-columns: repeat(3, 1fr);
+        /* lg: 3 cards per row */
+        gap: 20px;
+    }
+
+    .movie-card {
+        width: auto;
+        /* Let grid handle width */
+    }
+
+    .movie-name {
+        font-size: 1.1rem;
+    }
+
+    .movie-details {
+        font-size: 0.85rem;
+    }
+
+    .buy-now-btn,
+    .add-to-cart-btn {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+
+    .watchlist-star {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .header {
+        padding: 15px;
+        flex-direction: column;
+        /* Stack logo, search controls, auth vertically */
+        align-items: center;
+        height: auto;
+        /* Allow header height to adjust */
+    }
+
+    .header .logo {
+        margin-bottom: 15px;
+        width: 100%;
+        /* Space below logo */
+    }
+
+    .header-search-controls {
+        flex-direction: column;
+        /* Stack search bar, cart, advanced search vertically */
+        width: 100%;
+        margin-bottom: 15px;
+        /* Space below search controls */
+    }
+
+    .header-search-controls .header-search-bar {
+        width: 100%;
+        max-width: none;
+        /* Remove max-width constraint */
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+        /* Space below search bar */
+    }
+
+    .header-search-controls .header-cart-icon,
+    .header-search-controls .header-advanced-search-btn {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+        /* Space between icons */
+    }
+
+    .header-search-controls .header-advanced-search-btn {
+        margin-bottom: 0 !important;
+        /* No margin after last icon */
+    }
+
+    #auth-section {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-carousel {
+        height: 300px;
+    }
+
+    .carousel-item {
+        height: 280px;
+    }
+
+    .carousel-caption h5 {
+        font-size: 2rem;
+    }
+
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+
+    .carousel-caption {
+        padding: 15px;
+        max-width: 90%;
+        left: 5%;
+        right: 5%;
+        bottom: 5%;
+        transform: none;
+    }
+
+    .content-layout {
+        grid-template-columns: var(--sidebar-current-width) 1fr;
+        gap: 20px;
+        padding: 0 15px;
+    }
+
+    .sidebar {
+        position: sticky;
+        /* Remove sticky behavior on smaller screens */
+        top: auto;
+        padding: 15px;
+        box-shadow: none;
+        border-radius: 0;
+        height: auto;
+        /* Allow height to adjust to content on small screens */
+        overflow-y: hidden;
+        /* Hide scrollbar on small screens as it expands/collapses */
+    }
+
+    .movies-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+        /* md: 2 cards per row */
+        gap: 15px;
+        padding: 10px 0;
+    }
+
+    .movie-card {
+        width: auto;
+        /* Let grid handle width */
+    }
+
+    .watchlist-star {
+        font-size: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.3rem;
+        padding-left: 10px;
+    }
+
+    .footer {
+        padding: 20px;
+    }
+
+    .footer-links .col-6 {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .header {
+        padding: 10px;
+    }
+
+    .header .logo {
+        font-size: 2rem;
+    }
+
+    .sign-in-btn,
+    .user-dropdown {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .hero-carousel {
+        height: 220px;
+    }
+
+    .carousel-item {
+        height: 200px;
+    }
+
+    .carousel-caption h5 {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+    }
+
+    .carousel-caption p {
+        font-size: 0.75rem;
+        margin-bottom: 10px;
+    }
+
+    .carousel-caption .btn-danger {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+    }
+
+    .sidebar-title {
+        font-size: 1.2rem;
+    }
+
+    .movies-grid-container {
+        /* HIGHLIGHT START */
+        grid-template-columns: 90%;
+        /* sm: 1 card per row, fixed width */
+        justify-content: center;
+        /* Center the grid container */
+        /* HIGHLIGHT END */
+        gap: 10px;
+    }
+
+    .movie-card {
+        width: auto;
+        /* Let grid handle width */
+    }
+
+    .movie-name {
+        font-size: 1rem;
+    }
+
+    .movie-details {
+        font-size: 0.7rem;
+    }
+
+    .buy-now-btn,
+    .add-to-cart-btn {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+    }
+
+    .watchlist-star {
+        font-size: 1.3rem;
+    }
+
+    .footer {
+        padding: 15px;
+    }
+}

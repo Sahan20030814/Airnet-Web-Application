@@ -1,0 +1,946 @@
+/* General body styling */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #141414;
+    /* Dark background like Netflix */
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+}
+
+/* Header/Navigation Bar */
+.header {
+    background-color: #141414;
+    /* Solid dark background */
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo {
+    color: #e50914;
+    /* Netflix red */
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+/* New Header Navigation Links Styling */
+.header-nav {
+    gap: 25px;
+    /* Space between nav items */
+    margin-left: 50px;
+    /* Push nav slightly from logo */
+    flex-grow: 1;
+    /* Allow nav to take available space */
+    justify-content: center;
+    /* Center nav items horizontally */
+}
+
+.header-nav-item {
+    color: #b3b3b3;
+    /* Light gray for inactive links */
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    /* Prevent wrapping */
+}
+
+.header-nav-item:hover {
+    color: #fff;
+    /* White on hover */
+}
+
+.header-nav-item.active {
+    color: #fff;
+    /* White for active link */
+    font-weight: 700;
+    /* Bolder for active */
+}
+
+/* Sign In Button / User Dropdown */
+.sign-in-btn {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.sign-in-btn:hover {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+.user-dropdown {
+    background-color: #e50914;
+    border-color: #e50914;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: 500;
+    color: #fff;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.user-dropdown:hover {
+    background-color: #c40812;
+    border-color: #c40812;
+    color: #fff;
+}
+
+.dropdown-menu-dark {
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid #333;
+}
+
+.dropdown-menu-dark .dropdown-item {
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.dropdown-menu-dark .dropdown-item:hover {
+    background-color: #e50914;
+    color: #fff;
+}
+
+.dropdown-divider {
+    border-top: 1px solid #444;
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+/* Breadcrumb Styling */
+.my-account-breadcrumb {
+    padding: 15px 0;
+    margin-bottom: 20px;
+    background-color: transparent;
+    /* Ensure no background */
+}
+
+.my-account-breadcrumb .breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.my-account-breadcrumb .breadcrumb-item {
+    font-size: 1.1rem;
+    color: #b3b3b3;
+    /* Gray color for inactive items */
+}
+
+.my-account-breadcrumb .breadcrumb-item a {
+    color: #b3b3b3;
+    /* Gray color for links */
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.my-account-breadcrumb .breadcrumb-item a:hover {
+    color: #fff;
+    /* White on hover */
+}
+
+.my-account-breadcrumb .breadcrumb-item.active {
+    color: #0071eb;
+    /* Blue for active item, matching provided image */
+    font-weight: 600;
+}
+
+/* Style for the breadcrumb separator (/) */
+.my-account-breadcrumb .breadcrumb-item+.breadcrumb-item::before {
+    color: #fff;
+    /* White color for the separator */
+}
+
+/* Account Layout (Sidebar + Content) */
+.account-layout {
+    display: flex;
+    /* Use flexbox for layout */
+    flex-wrap: wrap;
+    /* Allow wrapping on smaller screens */
+    gap: 30px 0;
+    /* Vertical gap on wrap, no horizontal gap between cols */
+    margin-top: 20px;
+}
+
+/* Account Sidebar */
+.account-sidebar {
+    background-color: #1a1a1a;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    /* On larger screens, this will be col-lg-3, col-md-4 */
+    /* On smaller screens, it will be col-12 and take full width */
+}
+
+.account-sidebar .sidebar-title {
+    color: #e50914;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+}
+
+.account-sidebar .sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.account-sidebar .list-group-item {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    /* Remove default list-group-item padding */
+    margin-bottom: 10px;
+}
+
+.account-sidebar .sidebar-link {
+    color: #b3b3b3;
+    /* Light gray for links */
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 12px 15px;
+    /* Add padding to make clickable area larger */
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.account-sidebar .sidebar-link:hover {
+    background-color: #333;
+    color: #fff;
+    transform: translateX(5px);
+}
+
+.account-sidebar .sidebar-link.active {
+    background-color: #e50914;
+    /* Netflix red for active item */
+    color: #fff;
+    font-weight: 600;
+}
+
+.account-sidebar .sidebar-link.active:hover {
+    background-color: #c40812;
+    /* Darker red on hover for active */
+    color: #fff;
+}
+
+.account-sidebar .sidebar-link .fas,
+.account-sidebar .sidebar-link .fab {
+    margin-right: 15px;
+    width: 20px;
+    /* Fixed width for icons for alignment */
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* Account Content Area */
+.account-content {
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    /* On larger screens, this will be col-lg-9, col-md-8 */
+    /* On smaller screens, it will be col-12 and take full width */
+}
+
+.account-content .content-title {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+}
+
+/* --- New styles for Notification Area --- */
+.notification-area {
+    background-color: #e8b603;
+    color: #000000;
+    font-weight: bold;
+    padding: 15px 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: left;
+}
+
+.notification-area .notification-text {
+    margin-bottom: 0;
+    color: black;
+    /* Remove default paragraph margin */
+}
+
+/* My Profile Section Specific Styles */
+.profile-section {
+    margin-bottom: 40px;
+    /* Space between upside and downside sections */
+}
+
+.profile-section:last-child {
+    margin-bottom: 0;
+    /* No margin after the last section */
+}
+
+.profile-section .section-subtitle {
+    color: #e50914;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.profile-card {
+    background-color: #222;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.profile-card .form-label {
+    color: #b3b3b3;
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
+
+.profile-card .form-control {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.profile-card .form-control:focus {
+    background-color: #444;
+    border-color: #e50914;
+    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+    outline: none;
+}
+
+/* Password Toggle Icon */
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    /* Adjust to center vertically with input */
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #b3b3b3;
+    font-size: 1.1rem;
+    transition: color 0.2s ease;
+    z-index: 5;
+    /* Ensure it's above the input */
+}
+
+.password-toggle:hover {
+    color: #fff;
+}
+
+/* Adjust input padding when password toggle is present */
+.position-relative input.form-control {
+    padding-right: 45px;
+    /* Make space for the eye icon */
+}
+
+/* Custom class for consistent button spacing */
+.profile-action-row {
+    margin-top: 35px;
+    /* Fixed margin-top for consistency across all screen sizes */
+}
+
+.go-back-btn{
+    color: #e3e00d;
+    text-decoration: none;
+}
+
+.go-back-btn:hover{
+    color: #fffb00;
+}
+
+.go-back-btn:active{
+    color: #d6d301;
+}
+
+.content-section p {
+    color: #b3b3b3;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.content-card {
+    background-color: #222;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.content-card .card-title {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.content-card .card-text {
+    color: #b3b3b3;
+    margin-bottom: 10px;
+}
+
+.content-card .btn {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.content-card .btn-danger {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+.content-card .btn-danger:hover {
+    background-color: #c40812;
+    border-color: #c40812;
+}
+
+.content-card .btn-outline-danger {
+    color: #e50914;
+    border-color: #e50914;
+    background-color: transparent;
+}
+
+.content-card .btn-outline-danger:hover {
+    background-color: #e50914;
+    color: #fff;
+}
+
+.content-card .btn-outline-light {
+    color: #fff;
+    border-color: #fff;
+    background-color: transparent;
+}
+
+.content-card .btn-outline-light:hover {
+    background-color: #fff;
+    color: #141414;
+}
+
+/* Styles for the new form elements in Movies & Dramas content */
+#movies-dramas-content .content-card .form-label {
+    color: #fff;
+    /* White color for all labels within this section's form */
+}
+
+/* Ensure the specific headings (Genres, Countries, Languages) are also white */
+#movies-dramas-content .content-card .section-subtitle {
+    color: #fff;
+    /* Make the specific headings white */
+}
+
+.form-check-label {
+    color: #b3b3b3;
+    /* Light gray for checkbox labels */
+    font-size: 0.95rem;
+}
+
+.form-check-input {
+    width: 0.9em;
+    /* Reduced size */
+    height: 0.9em;
+    /* Reduced size */
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 0.25em;
+    /* Match Bootstrap default for checkboxes */
+    vertical-align: middle;
+    margin-top: 0.25em;
+}
+
+.form-check-input:checked {
+    background-color: #e50914;
+    /* Netflix red when checked */
+    border-color: #e50914;
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+    outline: none;
+}
+
+.image-upload-area {
+    border: 1px dashed #555;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    background-color: #222;
+}
+
+.image-upload-area img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+    border-radius: 4px;
+    object-fit: contain;
+    /* Ensure image fits within bounds without cropping */
+}
+
+.delete-all-btn {
+    color: rgb(222, 0, 0);
+}
+
+.delete-all-btn:hover {
+    color: rgb(255, 0, 0);
+}
+
+.delete-all-btn:active {
+    color: #ba0505;
+}
+
+/* Adjust specific image preview sizes */
+#bgImagePreview {
+    max-height: 150px;
+    /* Fixed height for background image preview */
+}
+
+#cardImagePreview {
+    max-height: 225px;
+    /* Fixed height for card image preview */
+}
+
+.image-upload-area .btn-outline-light {
+    margin-top: 10px;
+}
+
+/* Specific styling for labels within the Uploads content form */
+#uploads-content .content-card .form-label {
+    color: #fff;
+    /* White color for all labels within this section's form */
+}
+
+/* Styles for the movie listing table */
+.movie-listing-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    /* Ensure borders collapse */
+    background-color: #fff;
+    /* White background for the table */
+}
+
+.movie-listing-table th,
+.movie-listing-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    /* Lighter border for separation on white background */
+    color: #141414;
+    /* Dark text for table content */
+    vertical-align: middle;
+    /* Align content vertically in middle */
+}
+
+.movie-listing-table th {
+    background-color: #f0f0f0;
+    /* Slightly different background for header, still light */
+    font-weight: 600;
+    color: #e50914;
+    /* Netflix red for header text */
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.movie-listing-table tbody tr:hover {
+    background-color: #e0e0e0;
+    /* Lighter background on hover for white table */
+}
+
+.movie-thumb {
+    width: 80px;
+    /* Fixed width for movie images */
+    height: 120px;
+    /* Fixed height for movie images */
+    object-fit: cover;
+    /* Cover the area, crop if necessary */
+    border-radius: 4px;
+}
+
+.movie-listing-table .btn-info {
+    margin-bottom: 8px;
+    /* Vertical gap for View button */
+}
+
+.movie-listing-table .btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+}
+
+/* Adjust search input styling */
+.input-group .form-control {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+}
+
+.input-group .form-control::placeholder {
+    color: #b3b3b3;
+}
+
+.input-group .btn-outline-light {
+    border-color: #555;
+    color: #fff;
+    background-color: #444;
+}
+
+.input-group .btn-outline-light:hover {
+    background-color: #fff;
+    /* White background on hover */
+    border-color: #fff;
+    /* White border on hover */
+    color: #141414;
+    /* Dark text for contrast on white background */
+}
+
+/* Responsive adjustments for table */
+@media (max-width: 767.98px) {
+    .movie-listing-table thead {
+        display: none;
+        /* Hide table headers on small screens */
+    }
+
+    .movie-listing-table,
+    .movie-listing-table tbody,
+    .movie-listing-table tr,
+    .movie-listing-table td {
+        display: block;
+        /* Make table elements block-level */
+        width: 100%;
+        /* Full width */
+    }
+
+    .movie-listing-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        /* Lighter border on white background */
+        border-radius: 8px;
+        padding: 10px;
+        background-color: #f8f8f8;
+        /* Slightly off-white for card background */
+    }
+
+    .movie-listing-table td {
+        text-align: left;
+        /* Align data to the left */
+        padding-left: 10px;
+        /* Reset padding-left for data */
+        position: relative;
+        border-bottom: 1px dashed #aaa;
+        /* Lighter dashed border for separation */
+        color: #141414;
+        /* Dark text for cells on white background */
+    }
+
+    .movie-listing-table td::before {
+        content: attr(data-label);
+        /* Use data-label for content */
+        position: relative;
+        /* Change to relative */
+        display: block;
+        /* Make it a block to take full width */
+        text-align: left;
+        /* Ensure label is left-aligned */
+        font-weight: 600;
+        color: #e50914;
+        /* Netflix red for labels */
+        margin-bottom: 5px;
+        /* Add some space below the label */
+    }
+
+    .movie-listing-table td:last-child {
+        border-bottom: 0;
+        /* No border for the last cell */
+        text-align: center;
+        /* Center buttons */
+        padding-left: 10px;
+        /* Adjust padding */
+    }
+
+    .movie-listing-table .movie-thumb {
+        display: block;
+        margin: 0 auto 10px auto;
+        /* Center image */
+    }
+}
+
+/* Footer styling */
+.footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 30px 40px;
+    width: 100%;
+    color: #757575;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    border-top: 1px solid #222;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-content p {
+    margin-bottom: 20px;
+}
+
+.footer-link {
+    color: #757575;
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+
+/* Header responsiveness */
+@media (max-width: 991.98px) {
+    .header {
+        padding: 15px;
+    }
+
+    .header .logo {
+        margin-bottom: 0;
+    }
+
+    .header-nav {
+        justify-content: center;
+        /* Center nav items on smaller screens */
+        margin-left: 0;
+        /* Remove left margin on smaller screens */
+        margin-right: 0;
+        /* Remove right margin on smaller screens */
+        flex-grow: 0;
+        /* Allow nav to shrink */
+        flex-basis: 100%;
+        /* Take full width on smaller screens */
+        order: 2;
+        /* Put nav below logo and auth */
+        margin-top: 10px;
+        /* Add spacing below logo/auth */
+        flex-wrap: wrap;
+        /* Allow nav items to wrap */
+        gap: 15px;
+        /* Adjust gap for wrapped items */
+    }
+
+    #auth-section {
+        order: 1;
+        /* Keep auth section after logo */
+    }
+}
+
+@media (max-width: 767.98px) {
+    .header .container-fluid {
+        flex-direction: column;
+        /* Force column layout on very small screens */
+        align-items: flex-start;
+        /* Align items to start when stacked */
+    }
+
+    .header .logo,
+    .header-nav,
+    #auth-section {
+        width: 100%;
+        /* Take full width when stacked */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+        /* Add spacing between stacked items */
+        text-align: center;
+        /* Center text for logo and nav */
+    }
+
+    .header-nav {
+        justify-content: center !important;
+        /* Center nav items when stacked */
+        gap: 10px;
+        /* Smaller gap when wrapped/stacked */
+    }
+
+    .main-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .my-account-breadcrumb {
+        padding: 10px 0;
+    }
+
+    .my-account-breadcrumb .breadcrumb-item {
+        font-size: 1rem;
+    }
+
+    .account-sidebar,
+    .account-content {
+        padding: 20px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .account-sidebar .sidebar-title {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+
+    .account-sidebar .sidebar-link {
+        font-size: 1rem;
+        padding: 10px 12px;
+    }
+
+    .account-sidebar .sidebar-link .fas,
+    .account-sidebar .sidebar-link .fab {
+        margin-right: 10px;
+        font-size: 1.1rem;
+    }
+
+    .account-content .content-title {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    .content-section p {
+        font-size: 0.95rem;
+    }
+
+    .content-card .card-title {
+        font-size: 1.2rem;
+    }
+
+    .content-card .card-text {
+        font-size: 0.9rem;
+    }
+
+    .content-card .btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        padding: 20px;
+    }
+
+    .footer-links .col-6 {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .header {
+        padding: 10px;
+    }
+
+    .header .logo {
+        font-size: 1.8rem;
+    }
+
+    .header-nav-item {
+        font-size: 0.9rem;
+        /* Smaller font for nav items on very small screens */
+        padding: 5px 8px;
+        /* Adjust padding */
+    }
+
+    .sign-in-btn,
+    .user-dropdown {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .my-account-breadcrumb {
+        font-size: 0.9rem;
+    }
+
+    .account-sidebar,
+    .account-content {
+        padding: 15px;
+    }
+
+    .account-sidebar .sidebar-title {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .account-sidebar .sidebar-link {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    .account-sidebar .sidebar-link .fas,
+    .account-sidebar .sidebar-link .fab {
+        margin-right: 8px;
+        font-size: 1rem;
+    }
+
+    .account-content .content-title {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+
+    .content-section p {
+        font-size: 0.85rem;
+    }
+
+    .content-card .card-title {
+        font-size: 1.1rem;
+    }
+
+    .content-card .card-text {
+        font-size: 0.8rem;
+    }
+
+    .content-card .btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .footer {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Airnet - Admin Panel</title>
+        <link rel="icon" href="assets/images/airnet_logo.ico">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/my-account.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
+    </head>
+
+    <body>
+        <!-- Header/Navigation Bar -->
+        <header class="header">
+            <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+                <a href="index.html" class="logo">AIRNET</a>
+
+                <!-- Navigation Links Section -->
+                <nav class="header-nav d-flex align-items-center">
+                    <h1>Admin Panel</h1>
+                </nav>
+
+                <!-- User Authentication Section -->
+                <div id="auth-section">
+                    <div class="dropdown d-none" id="myAccount_btn">
+                        <button class="btn btn-secondary dropdown-toggle user-dropdown" type="button" id="userDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i> Hello Admin
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item text-center py-1" href="#" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content container-fluid">
+
+            <div class="account-layout row">
+                <!-- Sidebar for Account Navigation -->
+                <aside class="account-sidebar col-lg-3 col-md-4 col-12">
+                    <h3 class="sidebar-title">Settings</h3>
+                    <ul class="list-group sidebar-nav">
+                        <li class="list-group-item">
+                            <a href="#" class="sidebar-link active" data-target="dashboard-content">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="sidebar-link" data-target="all-contents-content">
+                                <i class="fas fa-film"></i> All Contents
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="sidebar-link" data-target="all-sellers-content">
+                                <i class="fas fa-store"></i> All Sellers
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="sidebar-link" data-target="all-viewers-content">
+                                <i class="fas fa-users"></i> Audience
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="sidebar-link" data-target="all-purchasing-items-content">
+                                <i class="fas fa-shopping-cart"></i> Purchasing Contents
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#" class="sidebar-link" data-target="all-invoices-content">
+                                <i class="fas fa-file-invoice"></i> All Invoices
+                            </a>
+                        </li>
+
+                    </ul>
+                </aside>
+
+                <!-- Sidebar Items Content Area -->
+                <section class="account-content col-lg-9 col-md-8 col-12">
+
+                    <!-- My Profile Content (Default active) -->
+                    <div id="dashboard-content" class="content-section active">
+                        <h2 class="content-title">Dashboard</h2>
+
+                        <!--Contents Summary-->
+                        <div class="profile-section row mb-5">
+                            <h3 class="section-subtitle">All Contents Summary</h3>
+
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <div class="card profile-card">
+                                    <h3 class="section-subtitle text-center">All Contents</h3>
+                                    <div class="card-body text-center">
+                                        <h1 class="display-1 text-light" id="all-contents-count">0</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card profile-card">
+                                    <h3 class="section-subtitle text-center">This Month Contents</h3>
+                                    <div class="card-body text-center">
+                                        <h1 class="display-1 text-light" id="current-month-contents-count">0</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Contents Summary-->
+
+                        <!--Sellers Summary-->
+                        <div class="profile-section row mb-5">
+                            <h3 class="section-subtitle">All Sellers Summary</h3>
+
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <div class="card profile-card">
+                                    <h3 class="section-subtitle text-center">All Sellers</h3>
+                                    <div class="card-body text-center">
+                                        <h1 class="display-1 text-light" id="all-sellers-count">0</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card profile-card">
+                                    <h3 class="section-subtitle text-center">This Month Sellers</h3>
+                                    <div class="card-body text-center">
+                                        <h1 class="display-1 text-light" id="current-month-sellers-count">0</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Sellers Summary-->
+
+                        <!--Users Summary-->
+                        <div class="profile-section row mb-5">
+                            <h3 class="section-subtitle">All Users Summary</h3>
+
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <div class="card profile-card">
+                                    <h3 class="section-subtitle text-center">All Users</h3>
+                                    <div class="card-body text-center">
+                                        <h1 class="display-1 text-light" id="all-users-count">0</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card profile-card">
+                                    <h3 class="section-subtitle text-center">This Month Users</h3>
+                                    <div class="card-body text-center">
+                                        <h1 class="display-1 text-light" id="current-month-users-count">0</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Users Summary-->
+
+                        <!--Invoices Summary-->
+                        <div class="profile-section row mb-4">
+                            <h3 class="section-subtitle">All Invoices Summary</h3>
+
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <div class="card profile-card">
+                                    <h3 class="section-subtitle text-center">All Invoices</h3>
+                                    <div class="card-body text-center">
+                                        <h1 class="display-1 text-light" id="all-invoices-count">0</h1>
+                                        <h3 class="text-info mt-4" id="all-total-income">Total Income: Rs. 0.00</h3>
+                                        <h3 class="text-warning mt-3" id="all-sellers-income">Sellers Income: Rs. 0.00</h3>
+                                        <h2 class="text-success fw-bold mt-3" id="all-site-profit">Site Profit: Rs. 0.00</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="card profile-card">
+                                    <h3 class="section-subtitle text-center">This Month Invoices</h3>
+                                    <div class="card-body text-center">
+                                        <h1 class="display-1 text-light" id="current-month-invoices-count">0</h1>
+                                        <h3 class="text-info mt-4" id="current-month-total-income">Total Income: Rs. 0.00</h3>
+                                        <h3 class="text-warning mt-3" id="current-month-sellers-income">Sellers Income: Rs. 0.00</h3>
+                                        <h2 class="text-success fw-bold mt-3" id="current-month-site-profit">Site Profit: Rs. 0.00</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Invoices Summary-->
+
+                    </div>
+
+                    <!-- all content Content -->
+                    <div id="all-contents-content" class="content-section d-none">
+                        <h2 class="content-title">All Contents</h2>
+                        <div class="card content-card">
+                            <div class="card-body">
+                                <div class="row mb-4 align-items-center">
+                                    <div class="col-md-8 col-lg-10 mb-3 mb-md-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bg-secondary text-white border-0"
+                                                   placeholder="Search contents by name..." id="all-content-search-bar">
+                                            <button class="btn btn-outline-light" type="button" onclick="loadAdminPanelAllContentData();">Search</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-lg-2 mb-3 mb-md-0">
+                                        <select class="form-select bg-secondary text-white border-0"
+                                                id="contentTypeSelector" onchange="loadAdminPanelAllContentData();">
+                                            <option value="0" selected>All Types</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label text-light">Specified seller</label>
+                                    <select class="form-select bg-secondary text-white border-0" id="contentSellersSelector" onchange="loadAdminPanelAllContentData();">
+                                        <option value="0" selected>Any seller</option>
+                                    </select>
+                                </div>
+
+                                <p id="noSelectedContentMessage" class="text-center d-none">No contents were found yet!</p>
+
+                                <div class="table-responsive d-none" id="selectedContentItemsTable">
+                                    <table class="table table-hover movie-listing-table">
+                                        <!-- Reusing movie-listing-table for consistent styling -->
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Type</th>
+                                                <th scope="col">Price (Rs.)</th>
+                                                <th scope="col">Seller</th>
+                                                <th scope="col">View</th>
+                                                <th scope="col">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="all-contents-table-body">
+                                            <tr class="d-none" id="all-contents-table-row">
+                                                <td id="all-contents-item-number">1</td>
+                                                <td><a href="#" id="all-contents-item-img-a" target="_blank"><img id="all-contents-item-img" src="https://placehold.co/80x120/333333/ffffff?text=WL+1" class="img-fluid movie-thumb"></a></td>
+                                                <td id="all-contents-item-name">The Matrix</td>
+                                                <td id="all-contents-item-content-type">Movie</td>
+                                                <td id="all-contents-item-price">$12.99</td>
+                                                <td id="all-contents-item-seller-email">dammika@gmail.com</td>
+                                                <td><a class="btn btn-warning btn-sm" href="#" target="_blank" id="all-contents-item-watch-now-btn"><i
+                                                            class="fas fa-eye"></i></a></td>
+                                                <td>
+                                                    <div class="btn-group border border-1 border-dark">
+                                                        <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" 
+                                                                id="all-contents-item-status-chage-btn">
+                                                            <span class="badge rounded-pill text-bg-success">Active</span>
+                                                            <!--<span class="badge rounded-pill text-bg-danger">Banned</span>-->
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a class="dropdown-item" style="cursor: pointer;" id="all-contents-item-status-active-btn"><span class="badge rounded-pill text-bg-success">Active</span></a></li>
+                                                            <li><a class="dropdown-item" style="cursor: pointer;" id="all-contents-item-status-banned-btn"><span class="badge rounded-pill text-bg-danger">Banned</span></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- All Sellers Content -->
+                    <div id="all-sellers-content" class="content-section d-none">
+                        <h2 class="content-title">All Sellers</h2>
+                        <div class="card content-card">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-secondary text-white border-0"
+                                               placeholder="Search sellers by email..." id="all-sellers-search-bar">
+                                        <button class="btn btn-outline-light" type="button" onclick="loadAdminPanelAllSellersData();">Search</button>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label text-light">Specified content</label>
+                                    <select class="form-select bg-secondary text-white border-0" id="allContentsSelector" onchange="loadAdminPanelAllSellersData();">
+                                        <option value="0" selected>Any content</option>
+                                    </select>
+                                </div>
+
+                                <!-- Message when no movies are uploaded -->
+                                <p id="noSelectedSellerMessage" class="text-center d-none">No sellers were found yet!</p>
+
+                                <div class="table-responsive d-none" id="selectedSellersListTable">
+                                    <table class="table table-hover movie-listing-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Email Address</th>
+                                                <th scope="col">Reg_Date</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Contents</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="all-sellers-table-body">
+                                            <tr class="d-none" id="all-sellers-table-row">
+                                                <td id="all-sellers-person-number">1</td>
+                                                <td id="all-sellers-person-name" >Sahan Dilshan</td>
+                                                <td id="all-sellers-person-email">sahan@gmail.com</td>
+                                                <td id="all-sellers-person-registered-at">2025-08-01</td>
+                                                <td id="all-sellers-person-status">Verified</td>
+                                                <td>
+                                                    <button class="btn btn-info btn-sm" id="all-sellers-person-contents-btn"><i class="fas fa-photo-video"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- All Users Content -->
+                    <div id="all-viewers-content" class="content-section d-none">
+                        <h2 class="content-title">Audience</h2>
+                        <div class="card content-card">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-secondary text-white border-0"
+                                               placeholder="Search viewers by email..." id="all-users-search-bar">
+                                        <button class="btn btn-outline-light" type="button" onclick="loadAdminPanelAllAudienceData();">Search</button>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label text-light">Purchasing content</label>
+                                    <select class="form-select bg-secondary text-white border-0" id="allSellingContentsSelector" onchange="loadAdminPanelAllAudienceData();">
+                                        <option value="0" selected>Any content</option>
+                                    </select>
+                                </div>
+
+                                <!-- Message when no movies are uploaded -->
+                                <p id="noSelectedUserMessage" class="text-center d-none">No viewers were found yet!</p>
+
+                                <div class="table-responsive d-none" id="selectedUsersListTable">
+                                    <table class="table table-hover movie-listing-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Email Address</th>
+                                                <th scope="col">Reg_Date</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Purchasing</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="all-users-table-body">
+                                            <tr class="d-none" id="all-users-table-row">
+                                                <td id="all-users-person-number">1</td>
+                                                <td id="all-users-person-name">Sahan Dilshan</td>
+                                                <td id="all-users-person-email">sahan@gmail.com</td>
+                                                <td id="all-users-person-registered-at">2025-08-01</td>
+                                                <td id="all-users-person-status">Verified</td>
+                                                <td>
+                                                    <button class="btn btn-success btn-sm" id="all-users-person-purchasing-items-btn"><i class="fas fa-photo-video"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- All Purchasing Items Content -->
+                    <div id="all-purchasing-items-content" class="content-section d-none">
+                        <h2 class="content-title">Purchasing Items</h2>
+                        <div class="card content-card">
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <label class="form-label text-light">Specified user</label>
+                                    <select class="form-select bg-secondary text-white border-0" id="specificUserSelector" onchange="loadAdminPanelPurchasingContentsData();">
+                                        <option value="0" selected>Select</option>
+                                    </select>
+                                </div>
+
+                                <!-- Message when no movies are uploaded -->
+                                <p id="noPurchasingContentMessage" class="text-center d-none">No purchasing contents were found yet!</p>
+
+                                <div class="table-responsive d-none" id="purchasingContentItemsTable">
+                                    <table class="table table-hover movie-listing-table">
+                                        <!-- Reusing movie-listing-table for consistent styling -->
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Type</th>
+                                                <th scope="col">Price (Rs.)</th>
+                                                <th scope="col">Seller</th>
+                                                <th scope="col">View</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="purchasing-contents-table-body">
+                                            <tr class="d-none" id="purchasing-contents-table-row">
+                                                <td id="purchasing-contents-item-number">1</td>
+                                                <td><a href="#" id="purchasing-contents-item-img-a" target="_blank"><img id="purchasing-contents-item-img" src="https://placehold.co/80x120/333333/ffffff?text=WL+1" class="img-fluid movie-thumb"></a></td>
+                                                <td id="purchasing-contents-item-name">The Matrix</td>
+                                                <td id="purchasing-contents-item-content-type">Movie</td>
+                                                <td id="purchasing-contents-item-price">$12.99</td>
+                                                <td id="purchasing-contents-item-seller-email">dammika@gmail.com</td>
+                                                <td><a class="btn btn-warning btn-sm" href="#" target="_blank" id="purchasing-contents-item-watch-now-btn"><i
+                                                            class="fas fa-eye"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- All Invoices Content -->
+                    <div id="all-invoices-content" class="content-section d-none">
+                        <h2 class="content-title" id="content-users-list-title">All Invoices</h2>
+                        <div class="card content-card">
+                            <div class="card-body">
+
+                                <div class="row mb-4">
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <label class="form-label text-light">INV_Date: From</label>
+                                        <input type="date" class="form-control bg-secondary text-white border-0"
+                                               id="all-invoices-content-date-from" placeholder="e.g., 2025-02-25" onchange="loadAdminPanelAllInvoicesData();">
+                                    </div>
+
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <label class="form-label text-light">INV_Date: To</label>
+                                        <input type="date" class="form-control bg-secondary text-white border-0"
+                                               id="all-invoices-content-date-to" placeholder="e.g., 2025-02-25" onchange="loadAdminPanelAllInvoicesData();">
+                                    </div>
+
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <label class="form-label text-light">Order</label>
+                                        <select class="form-select bg-secondary text-white border-0"
+                                                id="all-invoices-content-order" onchange="loadAdminPanelAllInvoicesData();">
+                                            <option value="1">INV_Date: ASC</option>
+                                            <option value="2" selected>INV_Date: DESC</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label text-light">Specified User</label>
+                                        <select class="form-select bg-secondary text-white border-0" id="allCheckoutUsersSelector" onchange="loadAdminPanelAllInvoicesData();">
+                                            <option value="0" selected>Any user</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label text-light">Specified Content</label>
+                                        <select class="form-select bg-secondary text-white border-0"
+                                                id="allPurchasingContentsSelector" onchange="loadAdminPanelAllInvoicesData();">
+                                            <option value="0" selected>Any content</option>
+                                            <!-- More options will be dynamically loaded -->
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-2">
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <h6 class="text-info" id="all-invoice-items-total-income">Total Income: Rs. 0.00</h6>
+                                    </div>
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <h6 class="text-warning" id="all-invoice-items-seller-income">Sellers Income: Rs. 0.00</h6>
+                                    </div>
+                                    <div class="col-md-4 mb-3 mb-md-0">
+                                        <h5 class="text-success fw-bold" id="all-invoice-items-site-profit">Site Profit: Rs. 0.00</h5>
+                                    </div>
+                                </div>
+
+                                <!-- Message when no movies are uploaded -->
+                                <p id="noInvoicesContentItemsMessage" class="text-center d-none">No invoices were found yet!
+                                </p>
+
+                                <div class="table-responsive d-none" id="invoicesContentItemsTable">
+                                    <table class="table table-hover movie-listing-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">INV_No.</th>
+                                                <th scope="col">DATE</th>
+                                                <th scope="col">TIME</th>
+                                                <th scope="col">USER EMAIL ADDRESS</th>
+                                                <th scope="col">CONTENT</th>
+                                                <th scope="col">CONTENT PRICE (Rs.)</th>
+                                                <th scope="col">SITE RATE</th>
+                                                <th scope="col">SELLER PRICE (Rs.)</th>
+                                                <th scope="col">SITE PRICE (Rs.)</th>
+                                                <th scope="col">ACTIONS</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="all-invoice-items-table-body">
+                                            <tr class="d-none" id="all-invoice-items-table-row">
+                                                <td id="all-invoice-items-invoice-number">#1</td>
+                                                <td id="all-invoice-items-invoice-date">2025-02-18</td>
+                                                <td id="all-invoice-items-invoice-time">08:18:53 PM</td>
+                                                <td id="all-invoice-items-email">dammikadahanayaka69@gmail.com</td>
+                                                <td id="all-invoice-items-invoice-item-name">Fantastic Four Movie</td>
+                                                <td id="all-invoice-items-price">$14.99</td>
+                                                <td id="all-invoice-items-rate">15%</td>
+                                                <td id="all-invoice-items-seller-price">$14.99</td>
+                                                <td id="all-invoice-items-site-price">$14.99</td>
+                                                <td><a class="btn btn-info btn-sm me-2 d-none" href="#" target="_blank" id="all-invoice-items-invoice-btn"><i class="fas fa-file-invoice"></i></a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </main>
+
+        <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
+        <script src="assets/js/check_admin_index.js"></script>
+
+        <!-- BootstrapJS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcOdihg7paX5Mtsw4sQ"
+        crossorigin="anonymous"></script>
+        <script>
+
+                                                    document.addEventListener('DOMContentLoaded', () => {
+                                                        setupSidebarNavigation();
+                                                    });
+
+                                                    function navigateToContent(targetId, contentId, typeId) {
+                                                        const sidebarLinks = document.querySelectorAll('.account-sidebar .sidebar-link');
+                                                        const contentSections = document.querySelectorAll('.account-content .content-section');
+                                                        // Remove 'active' class from all links and hide all content sections
+                                                        sidebarLinks.forEach(item => item.classList.remove('active'));
+                                                        contentSections.forEach(section => section.classList.add('d-none'));
+                                                        // Show the target content section
+                                                        const targetContent = document.getElementById(targetId);
+                                                        if (targetContent) {
+                                                            targetContent.classList.remove('d-none');
+                                                        }
+
+                                                        // Find and activate the corresponding sidebar link
+                                                        const targetLink = document.querySelector(`.account-sidebar .sidebar-link[data-target="${targetId}"]`);
+                                                        if (targetLink) {
+                                                            targetLink.classList.add('active');
+                                                        }
+
+                                                    }
+
+                                                    function setupSidebarNavigation() {
+                                                        const sidebarLinks = document.querySelectorAll('.account-sidebar .sidebar-link');
+                                                        sidebarLinks.forEach(link => {
+                                                            link.addEventListener('click', function (e) {
+                                                                e.preventDefault(); // Prevent default link behavior
+                                                                const targetId = this.getAttribute('data-target');
+                                                                navigateToContent(targetId, null, null); // Use the new function
+                                                            });
+                                                        });
+                                                    }
+
+        </script>
+
+        <script src="assets/js/admin_panel.js"></script>
+
+    </body>
+
+</html>

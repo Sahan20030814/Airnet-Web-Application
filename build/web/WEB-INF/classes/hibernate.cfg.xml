@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/airnet?useSSL=false&amp;allowPublicKeyRetrieval=true</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">Sl@200322713066</property>
+        <property name="hibernate.connection.isolation">2</property>
+        <property name="hibernate.show_sql">true</property>
+        <mapping class="hibernate.Admin"></mapping>
+        <mapping class="hibernate.UserStatus"></mapping>
+        <mapping class="hibernate.User"></mapping>
+        <mapping class="hibernate.Genre"></mapping>
+        <mapping class="hibernate.Country"></mapping>
+        <mapping class="hibernate.QualityType"></mapping>
+        <mapping class="hibernate.MovieType"></mapping>
+        <mapping class="hibernate.Status"></mapping>
+        <mapping class="hibernate.MainMovie"></mapping>
+        <mapping class="hibernate.Episodes"></mapping>
+        <mapping class="hibernate.Language"></mapping>
+        <mapping class="hibernate.MainMovieHasGenre"></mapping>
+        <mapping class="hibernate.MainMovieHasCountry"></mapping>
+        <mapping class="hibernate.MainMovieHasLanguage"></mapping>
+        <mapping class="hibernate.Watchlist"></mapping>
+        <mapping class="hibernate.Cart"></mapping>
+        <mapping class="hibernate.RatingType"></mapping>
+        <mapping class="hibernate.Checkout"></mapping>
+        <mapping class="hibernate.CheckoutItems"></mapping>
+    </session-factory>
+</hibernate-configuration>
+

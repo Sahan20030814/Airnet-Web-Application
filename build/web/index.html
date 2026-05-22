@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Airnet</title>
+        <link rel="icon" href="assets/images/airnet_logo.ico">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/home.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
+    </head>
+
+    <body>
+        <!-- Header/Navigation Bar -->
+        <header class="header">
+            <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+                <a href="index.html" class="logo">AIRNET</a>
+
+                <!-- Search Bar, Go to Cart, Advanced Search moved to header -->
+                <div class="header-search-controls d-flex align-items-center flex-grow-1 justify-content-center mx-3">
+                    <div class="input-group header-search-bar me-3">
+                        <input type="text" class="form-control" placeholder="Search movies or TV shows..." id="search-bar-content">
+                        <button class="btn btn-outline-light" type="button" onclick="goToSearch();">Search</button>
+                    </div>
+
+                    <a href="cart.html" class="btn btn-danger header-cart-icon me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+
+                    <!-- Advanced Search button as icon -->
+                    <button class="btn btn-outline-light header-advanced-search-btn"
+                            onclick="window.location.href = 'searched_contents.html'">
+                        <i class="fas fa-sliders-h"></i>
+                    </button>
+
+                </div>
+                <!-- HIGHLIGHT END -->
+
+                <!-- User Authentication Section -->
+                <div id="auth-section">
+                    <!-- Logged Out State (Default) -->
+                    <a href="signin.html" class="btn btn-outline-light sign-in-btn" id="signIn_btn">Sign In</a>
+                    <!-- Logged In State (Hidden by default) -->
+                    <div class="dropdown d-none" id="myAccount_btn">
+                        <button class="btn btn-secondary dropdown-toggle user-dropdown" type="button" id="userDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i> My Account
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item text-center py-1" href="my_account.html">My Account</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-center py-1" href="#" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section - Movie Carousel -->
+        <section class="hero-carousel">
+            <div id="movieCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-inner" id="carousel-content">
+
+                    <!-- Carousel Item 1 -->
+                    <div class="carousel-item d-none" id="carousel-content-item" style="background-image: url('assets/images/img1.jpg');">
+                        <div class="carousel-caption d-block">
+                            <h5 id="carousel-content-item-title">Featured Movie Title</h5>
+                            <p id="carousel-content-item-description">A brief, exciting description of the featured movie. Watch now!</p>
+                            <a class="btn btn-danger" href="#" id="carousel-content-item-watch-now-btn">Watch Now</a>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#movieCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </section>
+
+        <div class="container-fluid content-layout">
+            <div class="row">
+                <!-- Sidebar for Filters -->
+                <aside class="sidebar col-xxl-2 col-lg-3 col-md-4 col-sm-5 col-12 order-1 mb-4" id="sidebar">
+
+                    <!-- Main Categories -->
+                    <h3 class="sidebar-title">Categories</h3>
+                    <ul class="sidebar-nav">
+                        <li><a href="searched_contents.html?content=topRatingMoviesTvShows" class="sidebar-link"><i class="fas fa-rocket"></i> <span class="sidebar-text">Top
+                                    IMDB</span></a></li>
+                        <li><a href="searched_contents.html?content=latestMovies" class="sidebar-link"><i class="fas fa-film"></i> <span
+                                    class="sidebar-text">Movies</span></a></li>
+                        <li><a href="searched_contents.html?content=latestTvShows" class="sidebar-link"><i class="fas fa-tv"></i> <span class="sidebar-text">TV
+                                    Shows</span></a></li>
+                        <li><a href="#" class="sidebar-link"><i class="fab fa-android"></i> <span
+                                    class="sidebar-text">Android App</span></a></li>
+                    </ul>
+
+                    <!-- Genre Filter -->
+                    <div class="filter-group mb-4">
+                        <button class="btn btn-toggle-filter w-100 text-start" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#genreCollapse" aria-expanded="true" aria-controls="genreCollapse">
+                            <span class="sidebar-text">Genre</span> <i class="fas fa-chevron-up float-end"></i>
+                        </button>
+                        <div class="collapse show" id="genreCollapse">
+                            <div class="genre-tags mt-3" id="genre-list">
+                                <a class="filter-text-tag" href="#" id="genre-item"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Country Filter -->
+                    <div class="filter-group mb-4">
+                        <button class="btn btn-toggle-filter w-100 text-start" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#countryCollapse" aria-expanded="true" aria-controls="countryCollapse">
+                            <span class="sidebar-text">Country</span> <i class="fas fa-chevron-up float-end"></i>
+                        </button>
+                        <div class="collapse show" id="countryCollapse">
+                            <div class="country-tags mt-3" id="country-list">
+                                <a class="filter-text-tag" href="#" id="country-item"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </aside>
+
+                <!-- Main Content Grid -->
+                <div class="main-content-grid col-xxl-10 col-lg-9 col-md-8 col-sm-7 col-12 order-1 order-md-2">
+                    <!-- Trending Movies & TV Shows Section -->
+                    <section class="content-row">
+                        <div class="d-flex align-items-center mb-3">
+                            <h2 class="section-title me-3 mb-0">Trending</h2>
+                            <div class="btn-group trending-toggle" role="group" aria-label="Trending Toggle">
+                                <button type="button" class="btn btn-dark active" id="trendingMoviesBtn">Movies</button>
+                                <button type="button" class="btn btn-dark" id="trendingTvShowsBtn">TV Shows</button>
+                            </div>
+                        </div>
+
+                        <div class="col-12 text-end">
+                            <a href="searched_contents.html?content=trendingMoviesTvShows" class="px-2 select-all-btn text-decoration-none fw-bold">View All</a>
+                        </div>
+
+                        <!-- Trending Movies Grid -->
+                        <div class="movies-grid-container" id="trending-movie-container">
+
+                            <!-- 12+ Movie Cards for Trending Movies -->
+                            <div class="col movie-card" id="trending-movie-card">
+                                <div class="movie-thumbnail-wrapper"><a href="#" id="trending-movie-card-image-a">
+                                        <img src="https://placehold.co/300x450/3498db/ffffff?text=Trend+M+1"
+                                             alt="Trending Movie 1" class="img-fluid movie-thumbnail" id="trending-movie-card-image"></a>
+                                    <span class="watchlist-star" id="trending-movie-watchlist-btn">
+                                        <i class="far fa-star" id="trending-movie-watchlist-star"></i>
+                                    </span>
+                                </div>
+                                <div class="movie-info">
+                                    <h3 class="movie-name" id="trending-movie-title">The Action Hero</h3>
+                                    <h7 class="text-danger fw-bold" id="trending-movie-price">Price: $9.99</h7>
+                                    <p class="movie-details mt-1" id="trending-movie-details">Release: 2023 | Quality: HD | Duration: 1h 45m
+                                    </p>
+                                    <div class="movie-actions">
+                                        <a class="btn btn-sm btn-danger buy-now-btn" href="#" id="trending-movie-watch-now-btn"><i class="fas fa-play-circle"></i> Watch Now</a>
+                                        <button class="btn btn-sm btn-outline-light add-to-cart-btn" id="trending-movie-add-to-cart-btn"><i
+                                                class="fas fa-cart-plus"></i> Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Trending TV Shows Grid (Hidden by default) -->
+                        <div class="movies-grid-container d-none" id="trending-tv-show-container">
+
+                            <!-- 12+ TV Show Cards for Trending TV Shows -->
+                            <div class="movie-card col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3" id="trending-tv-show-card">
+                                <div class="movie-thumbnail-wrapper"><a href="#" id="trending-tv-show-card-image-a">
+                                        <img src="https://placehold.co/300x450/3498db/ffffff?text=Trend+M+1"
+                                             alt="Trending Tv Show 1" class="img-fluid movie-thumbnail" id="trending-tv-show-card-image"></a>
+                                    <span class="watchlist-star" id="trending-tv-show-watchlist-btn">
+                                        <i class="far fa-star" id="trending-tv-show-watchlist-star"></i>
+                                    </span>
+                                </div>
+                                <div class="movie-info">
+                                    <h3 class="movie-name" id="trending-tv-show-title">The Adventure Hero</h3>
+                                    <h7 class="text-danger fw-bold" id="trending-tv-show-price">Price: $9.99</h7>
+                                    <p class="movie-details mt-1" id="trending-tv-show-details">Release: 2023 | Quality: HD | Duration: 1h 45m
+                                    </p>
+                                    <div class="movie-actions">
+                                        <a class="btn btn-sm btn-danger buy-now-btn" href="#" id="trending-tv-show-watch-now-btn"><i class="fas fa-play-circle"></i>
+                                            Watch Now</a>
+                                        <button class="btn btn-sm btn-outline-light add-to-cart-btn" id="trending-tv-show-add-to-cart-btn"><i
+                                                class="fas fa-cart-plus"></i> Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- Latest Movies -->
+                    <section class="content-row">
+                        <h2 class="section-title">Latest Movies</h2>
+
+                        <div class="col-12 text-end">
+                            <a href="searched_contents.html?content=latestMovies" class="px-2 select-all-btn text-decoration-none fw-bold">View All</a>
+                        </div>
+
+                        <div class="movies-grid-container" id="latest-movie-container">
+
+                            <!-- 12+ Movie Cards for Latest Movies -->
+                            <div class="movie-card col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3" id="latest-movie-card">
+                                <div class="movie-thumbnail-wrapper"><a href="#" id="latest-movie-card-image-a">
+                                        <img src="https://placehold.co/300x450/3498db/ffffff?text=Trend+M+1"
+                                             alt="Trending Movie 1" class="img-fluid movie-thumbnail" id="latest-movie-card-image"></a>
+                                    <span class="watchlist-star" id="latest-movie-watchlist-btn">
+                                        <i class="far fa-star" id="latest-movie-watchlist-star"></i>
+                                    </span>
+                                </div>
+                                <div class="movie-info">
+                                    <h3 class="movie-name" id="latest-movie-title">The Action Hero</h3>
+                                    <h7 class="text-danger fw-bold" id="latest-movie-price">Price: $9.99</h7>
+                                    <p class="movie-details mt-1" id="latest-movie-details">Release: 2023 | Quality: HD | Duration: 1h 45m
+                                    </p>
+                                    <div class="movie-actions">
+                                        <a class="btn btn-sm btn-danger buy-now-btn" href="#" id="latest-movie-watch-now-btn"><i class="fas fa-play-circle"></i>
+                                            Watch Now</a>
+                                        <button class="btn btn-sm btn-outline-light add-to-cart-btn" id="latest-movie-add-to-cart-btn"><i
+                                                class="fas fa-cart-plus"></i> Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- Latest TV Shows -->
+                    <section class="content-row mb-5">
+                        <h2 class="section-title">Latest TV Shows</h2>
+
+                        <div class="col-12 text-end">
+                            <a href="searched_contents.html?content=latestTvShows" class="px-2 select-all-btn text-decoration-none fw-bold">View All</a>
+                        </div>
+
+                        <div class="movies-grid-container" id="latest-tv-show-container">
+
+                            <!-- 12+ TV Show Cards for Latest TV Shows -->
+                            <div class="movie-card col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3" id="latest-tv-show-card">
+                                <div class="movie-thumbnail-wrapper"><a href="#" id="latest-tv-show-card-image-a">
+                                        <img src="https://placehold.co/300x450/3498db/ffffff?text=Trend+M+1"
+                                             alt="Trending Movie 1" class="img-fluid movie-thumbnail" id="latest-tv-show-card-image"></a>
+                                    <span class="watchlist-star" id="latest-tv-show-watchlist-btn">
+                                        <i class="far fa-star" id="latest-tv-show-watchlist-star"></i>
+                                    </span>
+                                </div>
+                                <div class="movie-info">
+                                    <h3 class="movie-name" id="latest-tv-show-title">The Action Hero</h3>
+                                    <h7 class="text-danger fw-bold" id="latest-tv-show-price">Price: $9.99</h7>
+                                    <p class="movie-details mt-1" id="latest-tv-show-details">Release: 2023 | Quality: HD | Duration: 1h 45m
+                                    </p>
+                                    <div class="movie-actions">
+                                        <a class="btn btn-sm btn-danger buy-now-btn" href="#" id="latest-tv-show-watch-now-btn"><i class="fas fa-play-circle"></i>
+                                            Watch Now</a>
+                                        <button class="btn btn-sm btn-outline-light add-to-cart-btn" id="latest-tv-show-add-to-cart-btn"><i
+                                                class="fas fa-cart-plus"></i> Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer section -->
+        <div class="footer">
+            <div class="footer-content">
+                <p class="mb-4">Questions? Call <a href="#" class="footer-link">+94 77 523 8185</a></p>
+                <div class="row footer-links">
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">FAQ</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">Help Center</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">Terms of Use</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">Privacy</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-2">
+                        <a href="#" class="footer-link">Cookie Preferences</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-2">
+                        <a href="#" class="footer-link">Corporate Information</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer section -->
+
+        <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
+        <script src="assets/js/check_index.js"></script>
+        <script src="assets/js/index.js"></script>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcOdihg7paX5Mtsw4sQ"
+        crossorigin="anonymous"></script>
+
+        <script>
+                                // Simulate logged-in state (true for logged in, false for logged out)
+                                let isLoggedIn = false; // Change to true to test logged-in view
+
+                                document.addEventListener('DOMContentLoaded', () => {
+
+                                    // Trending Movies/TV Shows Toggle
+                                    const trendingMoviesBtn = document.getElementById('trendingMoviesBtn');
+                                    const trendingTvShowsBtn = document.getElementById('trendingTvShowsBtn');
+                                    const trendingMoviesGrid = document.getElementById("trending-movie-container");
+                                    const trendingTvShowsGrid = document.getElementById("trending-tv-show-container");
+
+                                    trendingMoviesBtn.addEventListener('click', () => {
+                                        trendingMoviesBtn.classList.add('active');
+                                        trendingTvShowsBtn.classList.remove('active');
+                                        trendingMoviesGrid.classList.remove('d-none');
+                                        trendingTvShowsGrid.classList.add('d-none');
+                                    });
+
+                                    trendingTvShowsBtn.addEventListener('click', () => {
+                                        trendingTvShowsBtn.classList.add('active');
+                                        trendingMoviesBtn.classList.remove('active');
+                                        trendingTvShowsGrid.classList.remove('d-none');
+                                        trendingMoviesGrid.classList.add('d-none');
+                                    });
+                                });
+
+        </script>
+
+    </body>
+
+</html>

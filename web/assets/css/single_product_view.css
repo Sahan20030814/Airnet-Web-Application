@@ -1,0 +1,1064 @@
+/* Define CSS variables for common heights/paddings */
+:root {
+    --header-height: 80px;
+    /* Approximate header height */
+    --main-content-padding-bottom: 10px;
+    --footer-height-approx: 180px;
+    /* Approximate footer height for calculation */
+}
+
+/* General body styling */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #141414;
+    /* Dark background like Netflix */
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+}
+
+/* Header/Navigation Bar */
+.header {
+    background-color: #141414;
+    /* Solid dark background */
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    /* Fixed height for header */
+}
+
+.header .logo {
+    color: #e50914;
+    /* Netflix red */
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+/* Header Search Controls */
+.header-search-controls {
+    flex-grow: 1;
+    /* Allow to take available space */
+    justify-content: center;
+    /* Center items horizontally */
+    max-width: 800px;
+    /* Limit overall width of search controls */
+}
+
+.header-search-controls .header-search-bar {
+    max-width: 550px;
+    /* Max width for search input */
+    flex-grow: 1;
+}
+
+.header-search-controls .form-control {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px 0 0 4px;
+    /* Rounded left side */
+    height: 42px;
+    /* Ensure consistent height with buttons/selects */
+}
+
+.header-search-controls .form-control::placeholder {
+    color: #b3b3b3;
+}
+
+.header-search-controls .form-control:focus {
+    background-color: #444;
+    border-color: #e50914;
+    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+    outline: none;
+}
+
+.header-search-controls .btn-outline-light {
+    border-color: #555;
+    color: #fff;
+    background-color: #444;
+    border-radius: 0 4px 4px 0;
+    /* Rounded right side */
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    height: 42px;
+    /* Ensure consistent height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    /* For the cart icon link */
+}
+
+.header-search-controls .btn-outline-light:hover {
+    background-color: #e50914;
+    /* Netflix red on hover */
+    border-color: #e50914;
+    color: #fff;
+}
+
+.header-search-controls .header-cart-icon,
+.header-search-controls .header-advanced-search-btn {
+    background-color: transparent;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    height: 42px;
+    /* Ensure consistent height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    /* For the cart icon link */
+}
+
+.header-search-controls .header-cart-icon:hover,
+.header-search-controls .header-advanced-search-btn:hover {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+/* Sign In Button / User Dropdown */
+.sign-in-btn {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.sign-in-btn:hover {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+.user-dropdown {
+    background-color: #e50914;
+    border-color: #e50914;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: 500;
+    color: #fff;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.user-dropdown:hover {
+    background-color: #c40812;
+    border-color: #c40812;
+    color: #fff;
+}
+
+.dropdown-menu-dark {
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid #333;
+}
+
+.dropdown-menu-dark .dropdown-item {
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.dropdown-menu-dark .dropdown-item:hover {
+    background-color: #e50914;
+    color: #fff;
+}
+
+.dropdown-divider {
+    border-top: 1px solid #444;
+}
+
+/* Footer styling */
+.footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 30px 40px;
+    width: 100%;
+    color: #757575;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    border-top: 1px solid #222;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-content p {
+    margin-bottom: 20px;
+}
+
+.footer-link {
+    color: #757575;
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+
+/* Header responsiveness */
+@media (max-width: 992px) {
+    .header {
+        padding: 15px;
+        flex-direction: column;
+        /* Stack logo, search controls, auth vertically */
+        align-items: center;
+        height: auto;
+        /* Allow header height to adjust */
+    }
+
+    .header .logo {
+        margin-bottom: 15px;
+        width: 100%;
+        /* Space below logo */
+    }
+
+    .header-search-controls {
+        flex-direction: column;
+        /* Stack search bar, cart, advanced search vertically */
+        width: 100%;
+        margin-bottom: 15px;
+        /* Space below search controls */
+    }
+
+    .header-search-controls .header-search-bar {
+        width: 100%;
+        max-width: none;
+        /* Remove max-width constraint */
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+        /* Space below search bar */
+    }
+
+    .header-search-controls .header-cart-icon,
+    .header-search-controls .header-advanced-search-btn {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+        /* Space between icons */
+    }
+
+    .header-search-controls .header-advanced-search-btn {
+        margin-bottom: 0 !important;
+        /* No margin after last icon */
+    }
+
+    #auth-section {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .header {
+        padding: 10px;
+    }
+
+    .header .logo {
+        font-size: 2rem;
+    }
+
+    .footer {
+        padding: 20px;
+    }
+
+    .footer-links .col-6 {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .header {
+        padding: 10px;
+    }
+
+    .sign-in-btn,
+    .user-dropdown {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        padding: 15px;
+    }
+}
+
+/* Main Content Area Layout */
+.main-content {
+    flex-grow: 1;
+    /* Allows main content to fill remaining vertical space */
+    padding-top: var(--main-content-padding-top);
+    padding-bottom: var(--main-content-padding-bottom);
+    display: flex;
+    /* Make it a flex container for its row child */
+    flex-direction: column;
+}
+
+/* Ensure content area takes full width when sidebar is removed */
+.content-area {
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    /* Ensure it takes full width */
+}
+
+.admin-content-area {
+    padding: 30px;
+    width: 100%;
+    /* Ensure it takes full width */
+}
+
+/* Movie/TV Series Cards (for "You may also like") */
+.movie-cards-grid .col {
+    display: flex;
+    /* Ensure card takes full height of column */
+}
+
+.movie-card {
+    width: 95%;
+    background-color: #222;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    /* Ensures image corners are rounded */
+    height: 100%;
+    /* Make cards fill column height */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.card-img-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    /* Aspect ratio 5:7 (height is 1.4 times width) - further reduced height */
+    overflow: hidden;
+}
+
+.card-img-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensures image covers the container */
+    border-radius: 8px 8px 0 0;
+    /* Rounded top corners */
+}
+
+/* Watchlist Star Icon */
+.watchlist-star {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.8rem;
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s ease, transform 0.2s ease;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.watchlist-star:hover {
+    transform: scale(1.1);
+}
+
+.watchlist-star.active {
+    color: gold;
+    /* Gold color when active (filled) */
+}
+
+.movie-card .card-body {
+    padding: 15px;
+    flex-grow: 1;
+    /* Allow body to take remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Push buttons to bottom */
+}
+
+.movie-card .card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movie-card .card-text-detail {
+    font-size: 0.9rem;
+    color: #b3b3b3;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.movie-card .card-actions {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow buttons to wrap on smaller screens */
+    gap: 8px;
+    /* Space between buttons */
+    justify-content: center;
+    /* Center buttons horizontally */
+}
+
+.movie-card .btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    font-weight: 500;
+    flex-grow: 1;
+    /* Allow buttons to grow */
+    min-width: 100px;
+    /* Minimum width for buttons */
+}
+
+.movie-card .watch-now-card-btn {
+    /* Specific class for Watch Now button on cards */
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+.movie-card .watch-now-card-btn:hover {
+    background-color: #c40812;
+    border-color: #c40812;
+}
+
+.movie-card .add-to-cart-btn {
+    color: #fff;
+    border-color: #fff;
+    background-color: transparent;
+}
+
+.movie-card .add-to-cart-btn:hover {
+    background-color: #fff;
+    color: #141414;
+}
+
+/* Drama Detail Section */
+.drama-detail-section {
+    position: relative;
+    padding-top: 40px;
+    /* Space from header */
+    padding-bottom: 30px;
+    /* Space below content */
+    color: #fff;
+    overflow: hidden;
+    /* Ensure background doesn't overflow */
+    background-color: #1a1a1a;
+    /* Fallback background color */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 40px;
+    /* Space before "You may also like" section */
+}
+
+.drama-background-poster {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden; /* Ensure image doesn't bleed out */
+}
+
+.drama-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the entire container */
+    filter: brightness(0.3) blur(8px);
+    /* Darken and blur for background effect */
+    transform: scale(1.05);
+    /* Slightly scale to hide blur edges */
+}
+
+.drama-content-container {
+    position: relative;
+    z-index: 1;
+    /* Ensure content is above background */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Semi-transparent overlay for readability */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+.drama-poster-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.drama-poster-card {
+    background-color: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    /* Take full width of its column */
+    max-width: 300px;
+    /* Max width for the poster */
+    margin-bottom: 20px;
+    position: relative;
+    /* Needed for absolute positioning of watchlist icon */
+}
+
+.drama-poster-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    /* Rounded corners for the image */
+}
+
+.vote-controls {
+    width: 100%;
+    max-width: 300px;
+    /* Match poster width */
+    padding: 15px 0;
+    background-color: #222;
+    border-top: 1px solid #333;
+    border-radius: 0 0 10px 10px;
+    margin-top: -10px;
+    /* Overlap slightly with poster card */
+}
+
+.vote-count {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #b3b3b3;
+}
+
+.like-btn-icon {
+    background-color: transparent;
+    border: none;
+    color: #b3b3b3;
+    font-size: 1.5rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+    padding: 5px 10px;
+}
+
+.like-btn-icon:hover {
+    color: #15a81d;
+    transform: scale(1.1);
+}
+
+.active-like-btn-icon {
+    color: #0fc418;
+    border: none;
+    font-size: 1.5rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+    padding: 5px 10px;
+}
+
+.active-like-btn-icon:hover {
+    color: #0fc418;
+    transform: scale(1.1);
+}
+
+.dislike-btn-icon {
+    background-color: transparent;
+    border: none;
+    color: #b3b3b3;
+    font-size: 1.5rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+    padding: 5px 10px;
+}
+
+.dislike-btn-icon:hover {
+    color: #e50914;
+    transform: scale(1.1);
+}
+
+.active-dislike-btn-icon {
+    color: #ff000d;
+    border: none;
+    font-size: 1.5rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+    padding: 5px 10px;
+}
+
+.active-dislike-btn-icon:hover {
+    color: #ff000d;
+    transform: scale(1.1);
+}
+
+.drama-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.drama-meta {
+    font-size: 1.1rem;
+    color: #b3b3b3;
+    flex-wrap: wrap;
+    gap: 10px;
+    /* Space between meta items */
+}
+
+.drama-quality {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+.drama-imdb-rating {
+    font-weight: 600;
+}
+
+/* Style for Trailer button */
+.trailer-btn {
+    color: #fff;
+    border-color: #fff;
+    background-color: transparent;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.trailer-btn:hover {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+.trailer-btn .fas {
+    margin-right: 5px;
+}
+
+.drama-price {
+    font-size: 1.2rem;
+    /* Slightly increased size */
+    padding: 6px 12px;
+    /* Adjusted padding */
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.drama-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.drama-details-list p {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #b3b3b3;
+}
+
+.drama-details-list strong {
+    color: #fff;
+    margin-right: 5px;
+}
+
+.drama-actions .btn {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.drama-actions .btn-danger {
+    background-color: #e50914;
+    border-color: #e50914;
+}
+
+.drama-actions .btn-danger:hover {
+    background-color: #c40812;
+    border-color: #c40812;
+}
+
+.drama-actions .btn-outline-light {
+    color: #fff;
+    border-color: #fff;
+    background-color: transparent;
+}
+
+.drama-actions .btn-outline-light:hover {
+    background-color: #fff;
+    color: #141414;
+}
+
+/* You May Also Like Section */
+.you-may-also-like {
+    padding: 15px 0;
+}
+
+.section-title {
+    color: #e50914;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+/* Responsive adjustments for drama details section */
+@media (max-width: 1199.98px) {
+
+    /* xl and down */
+    .drama-title {
+        font-size: 2.8rem;
+    }
+
+    .drama-meta {
+        font-size: 1rem;
+    }
+
+    .drama-details-list p {
+        font-size: 0.95rem;
+    }
+
+    .drama-actions .btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+
+@media (min-width: 992px) {
+
+    /* Large screens and up */
+    .drama-details-list .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .drama-details-list .col-lg-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .drama-details-list p {
+        text-align: left;
+    }
+}
+
+@media (max-width: 991.98px) {
+
+    /* lg and down */
+    .drama-content-container {
+        padding: 30px;
+    }
+
+    .drama-title {
+        font-size: 2.5rem;
+    }
+
+    .drama-meta {
+        justify-content: flex-start;
+        /* Align items to start for better wrapping */
+    }
+
+    /* Stack details vertically on medium and smaller screens */
+    .drama-details-list .row .col-lg-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 767.98px) {
+
+    /* md and down */
+    .drama-content-container {
+        padding: 20px;
+    }
+
+    .main-add-to-cart-btn {
+        margin-top: 25px;
+    }
+
+    .drama-poster-col {
+        margin-bottom: 30px;
+        order: 1;
+        /* Poster on top */
+    }
+
+    .drama-info-col {
+        order: 2;
+        /* Info below poster */
+    }
+
+    .drama-title {
+        font-size: 2.2rem;
+        text-align: center;
+    }
+
+    .drama-meta {
+        justify-content: center;
+        /* Center meta items when stacked */
+        margin-bottom: 20px;
+    }
+
+    .drama-description {
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+    .drama-details-list {
+        text-align: center;
+    }
+
+    .drama-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .drama-actions .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 575.98px) {
+
+    /* sm and down */
+    .drama-title {
+        font-size: 1.8rem;
+    }
+
+    .drama-meta {
+        font-size: 1rem;
+        flex-direction: column;
+        /* Stack meta items vertically */
+        align-items: center;
+    }
+
+    .drama-quality,
+    .drama-imdb-rating,
+    .trailer-btn,
+    .drama-price {
+        margin-right: 0 !important;
+        /* Remove horizontal margin when stacked */
+        margin-bottom: 8px;
+        /* Add vertical margin */
+    }
+
+    .drama-price {
+        margin-bottom: 0;
+        /* No margin after the last item */
+    }
+
+    .drama-quality,
+    .drama-price {
+        font-size: 0.85rem;
+    }
+
+    .drama-description,
+    .drama-details-list p {
+        font-size: 0.9rem;
+    }
+
+    .drama-actions .btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    /* Extra small adjustments */
+    .drama-title {
+        font-size: 1.5rem;
+    }
+
+    .drama-content-container {
+        padding: 15px;
+    }
+
+    .drama-poster-card {
+        max-width: 250px;
+        /* Smaller poster on very small screens */
+    }
+
+    .vote-controls {
+        max-width: 250px;
+    }
+
+    .drama-actions .btn {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}
+
+/* Custom Breadcrumb Styling */
+.custom-breadcrumb {
+
+    background-color: #1a1a1a;
+    /* Dark background for the breadcrumb */
+    padding: 15px 10px;
+    /* Padding to match header/main content alignment */
+    border-bottom: 1px solid #333;
+    /* Separator line */
+    font-size: 0.95rem;
+}
+
+.custom-breadcrumb .breadcrumb {
+    margin-bottom: 0;
+    /* Remove default Bootstrap margin */
+    background-color: transparent;
+    /* Ensure transparent background */
+}
+
+.custom-breadcrumb .breadcrumb-item {
+    color: #b3b3b3;
+    /* Light gray for inactive items */
+}
+
+.custom-breadcrumb .breadcrumb-item a {
+    color: #b3b3b3;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.custom-breadcrumb .breadcrumb-item a:hover {
+    color: #e50914;
+    /* Netflix red on hover */
+    text-decoration: underline;
+}
+
+.custom-breadcrumb .breadcrumb-item.active {
+    color: #fff;
+    /* White for the active item */
+    font-weight: 600;
+}
+
+.custom-breadcrumb .breadcrumb-item+.breadcrumb-item::before {
+    color: #b3b3b3;
+    content: "/";
+    /* Custom separator as per image */
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+/* Video Modal Styles */
+.video-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Darker overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Above all other content */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.video-modal-overlay.show-video-modal {
+    opacity: 1;
+    visibility: visible;
+}
+
+.video-modal-content {
+    position: relative;
+    background-color: #000; /* Black background for video player */
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+    width: 90%; /* Responsive width */
+    max-width: 900px; /* Max width for larger screens */
+    aspect-ratio: 16 / 9; /* Maintain 16:9 aspect ratio for video */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-close-video-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 2001; /* Ensure it's above the iframe */
+    opacity: 0.8;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn-close-video-modal:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+.video-player-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-player-container iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px; /* Match modal content border-radius */
+}
+
+/* Responsive adjustments for video modal */
+@media (max-width: 768px) {
+    .video-modal-content {
+        width: 95%;
+    }
+    .btn-close-video-modal {
+        font-size: 1.5rem;
+        top: 5px;
+        right: 5px;
+    }
+}
+
+@media (max-width: 576px) {
+    .video-modal-content {
+        width: 98%;
+    }
+    .btn-close-video-modal {
+        font-size: 1.3rem;
+    }
+}

@@ -1,0 +1,1223 @@
+/* Define CSS variables for common heights/paddings */
+:root {
+    --header-height: 80px;
+    /* Approximate header height */
+    --main-content-padding-top: 20px;
+    --main-content-padding-bottom: 50px;
+    --footer-height-approx: 180px;
+    /* Approximate footer height for calculation */
+}
+
+/* General body styling */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #141414;
+    /* Dark background like Netflix */
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+}
+
+/* Header/Navigation Bar */
+.header {
+    background-color: #141414;
+    /* Solid dark background */
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+    /* Fixed height for header */
+}
+
+.header .logo {
+    color: #e50914;
+    /* Netflix red */
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+/* HIGHLIGHT START */
+/* Header Search Controls */
+.header-search-controls {
+    flex-grow: 1;
+    /* Allow to take available space */
+    justify-content: center;
+    /* Center items horizontally */
+    max-width: 800px;
+    /* Limit overall width of search controls */
+}
+
+.header-search-controls .header-search-bar {
+    max-width: 550px;
+    /* Max width for search input */
+    flex-grow: 1;
+}
+
+.header-search-controls .form-control {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px 0 0 4px;
+    /* Rounded left side */
+    height: 42px;
+    /* Ensure consistent height with buttons/selects */
+}
+
+.header-search-controls .form-control::placeholder {
+    color: #b3b3b3;
+}
+
+.header-search-controls .form-control:focus {
+    background-color: #444;
+    border-color: #e50914;
+    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+    outline: none;
+}
+
+.header-search-controls .btn-outline-light {
+    border-color: #555;
+    color: #fff;
+    background-color: #444;
+    border-radius: 0 4px 4px 0;
+    /* Rounded right side */
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    height: 42px;
+    /* Ensure consistent height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-search-controls .btn-outline-light:hover {
+    background-color: #e50914;
+    /* Netflix red on hover */
+    border-color: #e50914;
+    color: #fff;
+}
+
+.header-search-controls .header-cart-icon,
+.header-search-controls .header-advanced-search-btn {
+    background-color: transparent;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    height: 42px;
+    /* Ensure consistent height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    /* For the cart icon link */
+}
+
+.header-search-controls .header-cart-icon:hover,
+.header-search-controls .header-advanced-search-btn:hover {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+/* HIGHLIGHT END */
+
+/* Sign In Button / User Dropdown */
+.sign-in-btn {
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.sign-in-btn:hover {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+.user-dropdown {
+    background-color: #e50914;
+    border-color: #e50914;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: 500;
+    color: #fff;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.user-dropdown:hover {
+    background-color: #c40812;
+    border-color: #c40812;
+    color: #fff;
+}
+
+.dropdown-menu-dark {
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 1px solid #333;
+}
+
+.dropdown-menu-dark .dropdown-item {
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.dropdown-menu-dark .dropdown-item:hover {
+    background-color: #e50914;
+    color: #fff;
+}
+
+.dropdown-divider {
+    border-top: 1px solid #444;
+}
+
+/* Main Content Area Layout */
+.main-content {
+    flex-grow: 1;
+    /* Allows main content to fill remaining vertical space */
+    padding-top: var(--main-content-padding-top);
+    padding-bottom: var(--main-content-padding-bottom);
+    display: flex;
+    /* Make it a flex container for its row child */
+    flex-direction: column;
+}
+
+/* Ensure sidebar and content area height alignment */
+.main-content>.row {
+    flex-grow: 1;
+    /* Make the row fill the main-content space */
+    align-items: flex-start;
+    /* Align items to the top, not stretch */
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background-color: #1a1a1a;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    /* HIGHLIGHT START */
+    /* Height of sidebar equal to screen size below header */
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+    /* Firefox */
+    position: sticky;
+    /* Make it sticky */
+    top: var(--header-height);
+    /* Stick it below the header */
+    margin-bottom: 0;
+    /* Remove bottom margin if sticky */
+    /* HIGHLIGHT END */
+}
+
+/* HIGHLIGHT START */
+/* Custom Scrollbar for Webkit (Chrome, Safari) - White color */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+    /* Width of the scrollbar */
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #333;
+    /* Dark track color */
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    /* White scroll thumb */
+    border-radius: 10px;
+    border: 2px solid #333;
+    /* Padding around thumb, matching track background */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: #e50914;
+    /* Netflix red on hover */
+}
+
+/* HIGHLIGHT END */
+
+.sidebar-title {
+    color: #e50914;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav .list-group-item {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.sidebar-link {
+    color: #b3b3b3;
+    /* Light gray for links */
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 12px 15px;
+    /* Add padding to make clickable area larger */
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.sidebar-link:hover {
+    background-color: #e50914;
+    /* Netflix red for active item */
+    color: #fff;
+    font-weight: 600;
+}
+
+.sidebar-link:active {
+    background-color: #c40812;
+    /* Darker red on hover for active */
+    color: #fff;
+}
+
+.sidebar-link .fas,
+.sidebar-link .fab {
+    margin-right: 15px;
+    width: 20px;
+    /* Fixed width for icons for alignment */
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* Filter Group Toggle Buttons (Genre, Country) */
+.btn-toggle-filter {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-toggle-filter:hover {
+    background-color: #555;
+}
+
+.btn-toggle-filter:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.btn-toggle-filter .float-end {
+    transition: transform 0.2s ease;
+}
+
+.btn-toggle-filter.collapsed .float-end {
+    transform: rotate(-90deg);
+}
+
+/* Genre and Country Text Tags (not buttons) */
+.genre-tags,
+.country-tags {
+    display: grid;
+    /* Use grid for two columns */
+    grid-template-columns: repeat(2, 1fr);
+    /* Two columns, equal width */
+    gap: 8px 10px;
+    /* Row gap, column gap */
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.filter-text-tag {
+    color: #fff;
+    /* White text color */
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 4px 0;
+    /* Minimal padding for text links */
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    /* Prevent text from breaking */
+    overflow: hidden;
+    /* Hide overflow */
+    text-overflow: ellipsis;
+    /* Add ellipsis if text overflows */
+    display: block;
+    /* Ensure it takes full grid cell width */
+}
+
+.filter-text-tag:hover {
+    color: #e50914;
+    cursor: pointer;
+    /* Red on hover */
+}
+
+/* Main Content Area for Search Results */
+.content-area {
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Movie/TV Series Cards */
+.movie-cards-grid .col {
+    display: flex;
+    /* Ensure card takes full height of column */
+}
+
+.movie-card {
+    width: 95%;
+    background-color: #222;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    /* Ensures image corners are rounded */
+    height: 100%;
+    /* Make cards fill column height */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.card-img-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    /* Aspect ratio 2:3 (height is 1.5 times width) */
+    overflow: hidden;
+}
+
+.card-img-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ensures image covers the container */
+    border-radius: 8px 8px 0 0;
+    /* Rounded top corners */
+}
+
+/* Watchlist Star Icon */
+.watchlist-star {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.8rem;
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s ease, transform 0.2s ease;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.watchlist-star:hover {
+    transform: scale(1.1);
+}
+
+.watchlist-star.active {
+    color: #FFD700;
+    /* Gold color when active (filled) */
+}
+
+.movie-card .card-body {
+    padding: 15px;
+    flex-grow: 1;
+    /* Allow body to take remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Push buttons to bottom */
+}
+
+.movie-card .card-title {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.movie-card .card-text-detail {
+    color: #b3b3b3;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.movie-card .card-text-price {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.movie-card .card-actions {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow buttons to wrap on smaller screens */
+    gap: 8px;
+    /* Space between buttons */
+    justify-content: center;
+    /* Center buttons horizontally */
+}
+
+.movie-card .btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    font-weight: 500;
+    flex-grow: 1;
+    /* Allow buttons to grow */
+    min-width: 100px;
+    /* Minimum width for buttons */
+}
+
+.movie-card .buy-now-btn {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+.movie-card .buy-now-btn:hover {
+    background-color: #c40812;
+    border-color: #c40812;
+}
+
+.movie-card .add-to-cart-btn {
+    color: #fff;
+    border-color: #fff;
+    background-color: transparent;
+}
+
+.movie-card .add-to-cart-btn:hover {
+    background-color: #fff;
+    color: #141414;
+}
+
+/* Pagination Styling */
+.custom-pagination .page-item .page-link {
+    background-color: #222;
+    border: 1px solid #333;
+    color: #fff;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.custom-pagination .page-item .page-link:hover {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+.custom-pagination .page-item.active .page-link {
+    background-color: #e50914;
+    border-color: #e50914;
+    color: #fff;
+}
+
+.custom-pagination .page-item.disabled .page-link {
+    background-color: #333;
+    border-color: #444;
+    color: #777;
+}
+
+/* HIGHLIGHT START */
+/* Footer styling - Restored */
+.footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 30px 40px;
+    width: 100%;
+    color: #757575;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    border-top: 1px solid #222;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.footer-content p {
+    margin-bottom: 20px;
+}
+
+.footer-link {
+    color: #757575;
+    text-decoration: none;
+    transition: text-decoration 0.2s ease;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* HIGHLIGHT END */
+
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+
+    .filter-text-tag {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+}
+
+/* Header responsiveness */
+@media (max-width: 992px) {
+    .header {
+        padding: 15px;
+        flex-direction: column;
+        /* Stack logo, search controls, auth vertically */
+        align-items: center;
+        height: auto;
+        /* Allow header height to adjust */
+    }
+
+    .header .logo {
+        margin-bottom: 15px;
+        width: 100%;
+
+        /* Space below logo */
+    }
+
+    .header-search-controls {
+        flex-direction: column;
+        /* Stack search bar, cart, advanced search vertically */
+        width: 100%;
+        margin-bottom: 15px;
+        /* Space below search controls */
+    }
+
+    .header-search-controls .header-search-bar {
+        width: 100%;
+        max-width: none;
+        /* Remove max-width constraint */
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+        /* Space below search bar */
+    }
+
+    .header-search-controls .header-cart-icon,
+    .header-search-controls .header-advanced-search-btn {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+        /* Space between icons */
+    }
+
+    .header-search-controls .header-advanced-search-btn {
+        margin-bottom: 0 !important;
+        /* No margin after last icon */
+    }
+
+    #auth-section {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Adjust sidebar and content area order for smaller screens */
+    .sidebar {
+        order: 2;
+        /* Sidebar below content on small screens */
+        position: static;
+        /* Remove sticky positioning on small screens */
+        height: auto;
+        /* Allow height to adjust */
+        max-height: none;
+        /* Remove fixed max-height for smaller screens */
+        overflow-y: visible;
+        /* Allow content to overflow normally */
+    }
+
+    .content-area {
+        order: 1;
+        /* Content above sidebar on small screens */
+    }
+
+    /* Adjust card grid for tablets */
+    .movie-cards-grid {
+        --bs-gutter-x: 1rem;
+        /* Adjust gutter for smaller screens */
+        --bs-gutter-y: 1rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .header {
+        padding: 10px;
+    }
+
+    .header .logo {
+        font-size: 2rem;
+    }
+
+    .sidebar {
+        padding: 20px;
+    }
+
+    .sidebar-title {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+
+    .sidebar-link {
+        font-size: 1rem;
+        padding: 10px 12px;
+    }
+
+    .sidebar-link .fas,
+    .sidebar-link .fab {
+        margin-right: 10px;
+        font-size: 1.1rem;
+    }
+
+    .genre-item,
+    .country-item {
+        font-size: 0.9rem;
+        padding: 6px 8px;
+    }
+
+    .content-area {
+        padding: 20px;
+    }
+
+    .movie-card .card-actions {
+        flex-direction: column;
+        /* Stack buttons vertically */
+        gap: 10px;
+        /* Space between stacked buttons */
+    }
+
+    .movie-card .btn {
+        width: 100%;
+        /* Full width for stacked buttons */
+    }
+
+    .footer {
+        padding: 20px;
+    }
+
+    .footer-links .col-6 {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .header {
+        padding: 10px;
+    }
+
+    .sign-in-btn,
+    .user-dropdown {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .sidebar,
+    .content-area {
+        padding: 15px;
+    }
+
+    .sidebar-title {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .sidebar-link {
+        font-size: 0.9rem;
+        padding: 8px 10px;
+    }
+
+    .sidebar-link .fas,
+    .sidebar-link .fab {
+        margin-right: 8px;
+        font-size: 1rem;
+    }
+
+    .genre-item,
+    .country-item {
+        font-size: 0.85rem;
+        padding: 5px 7px;
+    }
+
+    .movie-card .card-title {
+        font-size: 1.1rem;
+    }
+
+    .movie-card .card-text-detail {
+        font-size: 0.8rem;
+    }
+
+    .movie-card .btn {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+
+    .footer {
+        padding: 15px;
+    }
+}
+
+/* Advanced Search Modal Styles */
+.advanced-search-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    /* Above all other content */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.advanced-search-modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.advanced-search-modal-content {
+    background-color: #1a1a1a;
+    /* Dark background for the modal */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    /* Responsive width */
+    max-width: 900px;
+    /* Max width for larger screens */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+    /* Limit height to prevent overflow on small screens */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #333;
+    background-color: #222;
+}
+
+.modal-title {
+    color: #e50914;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.btn-close-custom {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn-close-custom:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    /* Enable scrolling for content if it overflows */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* Hide scrollbar for Webkit browsers */
+.modal-body::-webkit-scrollbar {
+    display: none;
+}
+
+.modal-body .form-label {
+    color: #b3b3b3;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.modal-body .form-select {
+    background-color: #333;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    height: auto;
+    /* Allow height to adjust based on content */
+    appearance: none;
+    /* Remove default arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+}
+
+.modal-body .form-select:focus {
+    background-color: #444;
+    border-color: #e50914;
+    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+    outline: none;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333;
+}
+
+.filter-section:last-child {
+    border-bottom: none;
+    /* No border for the last section */
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.filter-heading {
+    color: #e50914;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.form-check {
+    padding-left: 0;
+    /* Remove default padding for custom alignment */
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.form-check-input {
+    width: 14px;
+    /* Reduced size */
+    height: 14px;
+    /* Reduced size */
+    margin-left: 5px;
+    /* Added margin-left */
+    margin-right: 8px;
+    /* Adjusted margin-right */
+    border: 1px solid #555;
+    background-color: #333;
+    cursor: pointer;
+    flex-shrink: 0;
+    /* Prevent shrinking */
+}
+
+.form-check-input:checked {
+    background-color: #e50914;
+    border-color: #e50914;
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+    outline: none;
+}
+
+.form-check-label {
+    font-size: 0.85rem;
+    /* Reduced size */
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    /* Prevent text selection */
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 20px;
+    border-top: 1px solid #333;
+    background-color: #222;
+    gap: 10px;
+}
+
+.modal-footer .btn {
+    padding: 10px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+}
+
+.modal-footer .btn-danger {
+    background-color: #e50914;
+    border-color: #e50914;
+}
+
+.modal-footer .btn-danger:hover {
+    background-color: #c40812;
+    border-color: #c40812;
+}
+
+.modal-footer .btn-outline-secondary {
+    color: #b3b3b3;
+    border-color: #b3b3b3;
+    background-color: transparent;
+}
+
+.modal-footer .btn-outline-secondary:hover {
+    background-color: #b3b3b3;
+    color: #1a1a1a;
+}
+
+/* Price Range Slider Styles */
+.price-range-slider {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    /* Adjust height for visual spacing of thumbs and values */
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.price-range-slider .form-range {
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    /* Height of the track */
+    background: transparent;
+    /* Make default track transparent */
+    border-radius: 5px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    pointer-events: none;
+    /* Allow events to pass through to the other slider */
+    z-index: 2;
+    /* Ensure thumbs are above track */
+    top: 11px;
+    /* Vertically center with the .slider-track */
+    margin: 0;
+    /* Remove default margin */
+}
+
+/* Specific styling for thumbs */
+.price-range-slider .form-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    /* Size of the thumb */
+    height: 20px;
+    /* Size of the thumb */
+    background: #e50914;
+    /* Netflix red thumb */
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
+    /* White border on thumb */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    pointer-events: all;
+    /* Make thumbs clickable */
+}
+
+.price-range-slider .form-range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #e50914;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    pointer-events: all;
+}
+
+.price-range-slider .form-range::-webkit-slider-thumb:hover,
+.price-range-slider .form-range::-moz-range-thumb:hover {
+    background-color: #c40812;
+    border-color: #e50914;
+}
+
+/* The actual track background */
+.slider-track {
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    background: #555;
+    /* Base track color */
+    border-radius: 5px;
+    top: 11px;
+    /* Vertically center with thumbs */
+    z-index: 1;
+}
+
+/* Ensure max thumb is visually on top when overlapping */
+.price-range-slider .form-range.range-max {
+    z-index: 4;
+}
+
+.price-range-slider .form-range.range-min {
+    z-index: 3;
+}
+
+.price-values {
+    position: absolute;
+    width: 100%;
+    bottom: -25px;
+    /* Position below the slider */
+    font-size: 0.9rem;
+    color: #b3b3b3;
+}
+
+
+/* Responsive adjustments for modal */
+@media (max-width: 768px) {
+    .advanced-search-modal-content {
+        width: 95%;
+        margin: 20px auto;
+        /* Center with some margin */
+    }
+
+    .modal-header {
+        padding: 10px 15px;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+    }
+
+    .btn-close-custom {
+        font-size: 1.2rem;
+    }
+
+    .modal-body {
+        padding: 15px;
+    }
+
+    .modal-body .form-label {
+        font-size: 0.9rem;
+    }
+
+    .modal-body .form-select {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .filter-heading {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    .form-check-label {
+        font-size: 0.85rem;
+    }
+
+    .modal-footer {
+        padding: 10px 15px;
+        flex-direction: column;
+        /* Stack buttons vertically */
+        gap: 8px;
+    }
+
+    .modal-footer .btn {
+        width: 100%;
+        /* Full width for stacked buttons */
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .advanced-search-modal-content {
+        width: 98%;
+        margin: 10px auto;
+    }
+
+    .modal-header {
+        padding: 10px;
+    }
+
+    .modal-title {
+        font-size: 1.3rem;
+    }
+
+    .btn-close-custom {
+        font-size: 1rem;
+    }
+
+    .modal-body {
+        padding: 10px;
+    }
+
+    .modal-body .form-label {
+        font-size: 0.85rem;
+    }
+
+    .modal-body .form-select {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+
+    .filter-heading {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+
+    .form-check-label {
+        font-size: 0.8rem;
+    }
+
+    .modal-footer {
+        padding: 8px 10px;
+    }
+
+    .modal-footer .btn {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+}

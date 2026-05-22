@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Airnet</title>
+        <link rel="icon" href="assets/images/airnet_logo.ico">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/searched_contents.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
+    </head>
+
+    <body>
+        <!-- Header/Navigation Bar -->
+        <header class="header">
+            <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap">
+                <a href="index.html" class="logo">AIRNET</a>
+
+                <!-- Search Bar, Go to Cart, Advanced Search moved to header -->
+                <div class="header-search-controls d-flex align-items-center flex-grow-1 justify-content-center mx-3">
+                    <div class="input-group header-search-bar me-3">
+                        <input type="text" class="form-control" placeholder="Search movies or TV shows..." id="search-bar-content">
+                        <button class="btn btn-outline-light" type="button" onclick="goToSearch();">Search</button>
+                    </div>
+
+                    <a href="cart.html" class="btn btn-danger header-cart-icon me-3">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+
+                    <!-- Advanced Search button as icon -->
+                    <button class="btn btn-outline-light header-advanced-search-btn" id="openAdvancedSearchBtn">
+                        <i class="fas fa-sliders-h"></i>
+                    </button>
+
+                </div>
+                <!-- HIGHLIGHT END -->
+
+                <!-- User Authentication Section -->
+                <div id="auth-section">
+                    <!-- Logged Out State (Default) -->
+                    <a href="signin.html" class="btn btn-outline-light sign-in-btn" id="signIn_btn">Sign In</a>
+                    <!-- Logged In State (Hidden by default) -->
+
+                    <div class="dropdown d-none" id="myAccount_btn">
+                        <button class="btn btn-secondary dropdown-toggle user-dropdown" type="button" id="userDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i> My Account
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item text-center py-1" href="my_account.html">My Account</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-center py-1" href="#" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content container-fluid">
+            <div class="row">
+                <aside class="sidebar col-xxl-2 col-lg-3 col-md-4 col-sm-5 col-12 order-1">
+                    <h3 class="sidebar-title">Categories</h3>
+                    <ul class="list-group sidebar-nav">
+                        <li class="list-group-item"><a href="searched_contents.html?content=topRatingMoviesTvShows" class="sidebar-link"><i class="fas fa-fire"></i> Top
+                                IMDB</a></li>
+                        <li class="list-group-item"><a href="searched_contents.html?content=latestMovies" class="sidebar-link"><i class="fas fa-film"></i> Movies</a>
+                        </li>
+                        <li class="list-group-item"><a href="searched_contents.html?content=latestTvShows" class="sidebar-link"><i class="fas fa-tv"></i> TV Shows</a>
+                        </li>
+                        <li class="list-group-item"><a href="#" class="sidebar-link"><i class="fab fa-android"></i> Android
+                                App</a></li>
+                    </ul>
+
+                    <!-- Genre Filter -->
+                    <div class="filter-group mb-4">
+                        <button class="btn btn-toggle-filter w-100 text-start" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#genreCollapse" aria-expanded="true" aria-controls="genreCollapse">
+                            <span class="sidebar-text">Genre</span> <i class="fas fa-chevron-up float-end"></i>
+                        </button>
+                        <div class="collapse show" id="genreCollapse">
+                            <div class="genre-tags mt-3" id="genre-list">
+                                <a class="filter-text-tag" href="#" id="genre-item"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Country Filter -->
+                    <div class="filter-group mb-4">
+                        <button class="btn btn-toggle-filter w-100 text-start" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#countryCollapse" aria-expanded="true" aria-controls="countryCollapse">
+                            <span class="sidebar-text">Country</span> <i class="fas fa-chevron-up float-end"></i>
+                        </button>
+                        <div class="collapse show" id="countryCollapse">
+                            <div class="country-tags mt-3" id="country-list">
+                                <a class="filter-text-tag" href="#" id="country-item"></a>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content Area for Search Results -->
+                <section class="content-area col-xxl-10 col-lg-9 col-md-8 col-sm-7 col-12 order-1 order-md-2">
+
+                    <h2 id="searched-title">Search result</h2></br>
+
+                    <!-- Top Pagination -->
+                    <nav aria-label="Page navigation" class="mb-4">
+                        <ul class="pagination justify-content-center custom-pagination" id="sc-pagination-container">
+                            <li class="page-item d-none" id="sc-pagination-button"><a class="page-link" href="#" id="sc-pagination-a">Previous</a></li>
+                        </ul>
+                    </nav>
+
+                    </br>
+
+                    <!-- Movie/TV Series Cards Grid -->
+                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1 movie-cards-grid" id="content-card-container">
+
+                        <!-- Sample Card 1 -->
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 p-2 d-none" id="content-card">
+                            <div class="card movie-card">
+                                <div class="card-img-container"><a href="#" id="content-card-img-a">
+                                        <img class="card-img-top"
+                                             alt="" id="content-card-img"></a>
+                                    <span class="watchlist-star" id="content-card-watchlist-btn">
+                                        <i class="far fa-star" id="content-card-watchlist-star"></i>
+                                    </span>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title" id="content-card-title"></h5>
+                                    <p class="card-text-price text-danger fw-bold" id="content-card-price"></p>
+                                    <p class="card-text-detail" id="content-card-released-date"></p>
+                                    <p class="card-text-detail" id="content-card-quality"></p>
+                                    <p class="card-text-detail" id="content-card-duration"></p>
+                                    <div class="card-actions">
+                                        <a class="btn btn-danger btn-sm buy-now-btn" id="content-card-buy-now-btn"></a>
+                                        <button class="btn btn-outline-light btn-sm add-to-cart-btn" id="content-card-add-to-cart-btn"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    </br>
+
+                    <!-- Bottom Pagination -->
+                    <nav aria-label="Page navigation" class="mt-4">
+                        <ul class="pagination justify-content-center custom-pagination" id="sc-bottom-pagination-container">
+                            <li class="page-item d-none" id="sc-bottom-pagination-button"><a class="page-link" href="#" id="sc-bottom-pagination-a">Previous</a></li>
+                        </ul>
+                    </nav>
+                </section>
+            </div>
+        </main>
+
+        <!-- Advanced Search Modal Panel -->
+        <div class="advanced-search-modal-overlay" id="advancedSearchModalOverlay">
+            <div class="advanced-search-modal-content" id="advancedSearchModalContent">
+                <div class="modal-header">
+                    <h5 class="modal-title">Filter</h5>
+                    <button type="button" class="btn-close-custom" id="closeAdvancedSearchBtn" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-4">
+                        <div class="col-md-4 col-sm-12 mb-3">
+                            <label for="filterType" class="form-label">Type:</label>
+                            <select class="form-select" id="filterType">
+                                <option value="0">All</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-sm-12 mb-3">
+                            <label for="filterQuality" class="form-label">Quality:</label>
+                            <select class="form-select" id="filterQuality">
+                                <option value="0">All</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 col-sm-12 mb-3">
+                            <label for="filterReleasedYear" class="form-label">Released Year:</label>
+                            <select class="form-select" id="filterReleasedYear">
+                                <option value="0">All</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filter-section mb-4">
+                        <h6 class="filter-heading">Genre:</h6>
+                        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-2 px-5" id="genre-item-list">
+                            <div class="col" id="genre-item-content">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                    <label class="form-check-label" id="genre-item-text"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section mb-4">
+                        <h6 class="filter-heading">Country:</h6>
+                        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-2 px-5" id="country-item-list">
+                            <div class="col" id="country-item-content">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                    <label class="form-check-label" id="country-item-text"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section mb-4">
+                        <h6 class="filter-heading">Language:</h6>
+                        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-2 px-5" id="language-item-list">
+                            <div class="col" id="language-item-content">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox">
+                                    <label class="form-check-label" id="language-item-text"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HIGHLIGHT START -->
+                    <div class="filter-section mb-4">
+                        <h6 class="filter-heading">Price:</h6>
+                        <div class="price-range-slider">
+                            <div class="slider-track"></div>
+                            <input type="range" class="form-range range-min" id="minPriceRange" min="0" max="2000"
+                                   value="0">
+                            <input type="range" class="form-range range-max" id="maxPriceRange" min="0" max="2000"
+                                   value="2000">
+                            <div class="price-values d-flex justify-content-between">
+                                <span id="minPriceDisplay">Rs.0</span>
+                                <span id="maxPriceDisplay">Rs.2000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- HIGHLIGHT END -->
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="applyFilterBtn" onclick="setFilterURL();">Filter</button>
+                    <button type="button" class="btn btn-outline-secondary" onclick="resetFilter();">Reset</button>
+                </div>
+            </div>
+        </div>
+        <!-- Advanced Search Modal Panel -->
+
+        <!-- Footer section -->
+        <div class="footer">
+            <div class="footer-content">
+                <p class="mb-4">Questions? Call <a href="#" class="footer-link">+94 77 523 8185</a></p>
+                <div class="row footer-links">
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">FAQ</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">Help Center</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">Terms of Use</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <a href="#" class="footer-link">Privacy</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-2">
+                        <a href="#" class="footer-link">Cookie Preferences</a>
+                    </div>
+                    <div class="col-6 col-md-3 mb-2">
+                        <a href="#" class="footer-link">Corporate Information</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer section -->
+
+        <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
+        <script src="assets/js/check_index.js"></script>
+        <script src="assets/js/searched_contents.js"></script>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcOdihg7paX5Mtsw4sQ"
+        crossorigin="anonymous"></script>
+        <script>
+
+                        document.addEventListener('DOMContentLoaded', () => {
+
+                            // HIGHLIGHT START
+                            const advancedSearchModalOverlay = document.getElementById('advancedSearchModalOverlay');
+                            const advancedSearchModalContent = document.getElementById('advancedSearchModalContent');
+                            const openAdvancedSearchBtn = document.getElementById('openAdvancedSearchBtn');
+                            const closeAdvancedSearchBtn = document.getElementById('closeAdvancedSearchBtn');
+                            const applyFilterBtn = document.getElementById('applyFilterBtn');
+                            const cancelFilterBtn = document.getElementById('cancelFilterBtn');
+
+                            // HIGHLIGHT START
+                            // Get elements for the price range slider
+                            const minPriceRange = document.getElementById('minPriceRange');
+                            const maxPriceRange = document.getElementById('maxPriceRange');
+                            const minPriceDisplay = document.getElementById('minPriceDisplay');
+                            const maxPriceDisplay = document.getElementById('maxPriceDisplay');
+                            const sliderTrack = document.querySelector('.price-range-slider .slider-track');
+
+                            // Define min/max values for the slider (should match HTML attributes)
+                            const MIN_SLIDER_VAL = parseInt(minPriceRange.min);
+                            const MAX_SLIDER_VAL = parseInt(maxPriceRange.max);
+
+                            // Function to update the filled track background
+                            function updateSliderTrack() {
+                                const minVal = parseInt(minPriceRange.value);
+                                const maxVal = parseInt(maxPriceRange.value);
+                                const range = MAX_SLIDER_VAL - MIN_SLIDER_VAL;
+
+                                const minPercent = ((minVal - MIN_SLIDER_VAL) / range) * 100;
+                                const maxPercent = ((maxVal - MIN_SLIDER_VAL) / range) * 100;
+
+                                // Use linear-gradient to fill the track between the two thumbs
+                                sliderTrack.style.background = `linear-gradient(to right, #555 ${minPercent}%, #e50914 ${minPercent}%, #e50914 ${maxPercent}%, #555 ${maxPercent}%)`;
+                            }
+
+                            // Event listener for min slider
+                            minPriceRange.addEventListener('input', () => {
+                                let minVal = parseInt(minPriceRange.value);
+                                let maxVal = parseInt(maxPriceRange.value);
+
+                                // Ensure min does not exceed max
+                                if (minVal > maxVal) {
+                                    minPriceRange.value = maxVal;
+                                    minVal = maxVal;
+                                }
+                                minPriceDisplay.textContent = `Rs.${minVal}`;
+                                updateSliderTrack();
+                            });
+
+                            // Event listener for max slider
+                            maxPriceRange.addEventListener('input', () => {
+                                let minVal = parseInt(minPriceRange.value);
+                                let maxVal = parseInt(maxPriceRange.value);
+
+                                // Ensure max does not go below min
+                                if (maxVal < minVal) {
+                                    maxPriceRange.value = minVal;
+                                    maxVal = minVal;
+                                }
+                                maxPriceDisplay.textContent = `Rs.${maxVal}`;
+                                updateSliderTrack();
+                            });
+
+                            // Initial update of the track on load
+                            updateSliderTrack();
+
+                            // Function to open the modal
+                            openAdvancedSearchBtn.addEventListener('click', () => {
+                                advancedSearchModalOverlay.classList.add('show');
+                            });
+
+                            // Function to close the modal
+                            function closeAdvancedSearchModal() {
+                                advancedSearchModalOverlay.classList.remove('show');
+                            }
+
+                            closeAdvancedSearchBtn.addEventListener('click', closeAdvancedSearchModal);
+
+                            // Close modal when clicking outside the content
+                            advancedSearchModalOverlay.addEventListener('click', (event) => {
+                                if (event.target === advancedSearchModalOverlay) {
+                                    closeAdvancedSearchModal();
+                                }
+                            });
+
+                        });
+
+        </script>
+    </body>
+
+</html>
