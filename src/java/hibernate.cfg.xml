@@ -4,10 +4,11 @@
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://mysql-3f3fb788-dammikadahanayaka69-f7c0.f.aivencloud.com:10972/defaultdb?useSSL=true&amp;allowPublicKeyRetrieval=true&amp;trustServerCertificate=true</property>       
-        <property name="hibernate.connection.username">avnadmin</property>
-        <property name="hibernate.connection.password">AVNS_LSK9XZ6yx7z1mDYplZm</property>
+        <property name="hibernate.connection.url">jdbc:mysql://bolhijfcgvir6nvwgvbb-mysql.services.clever-cloud.com:3306/bolhijfcgvir6nvwgvbb?useSSL=false&amp;allowPublicKeyRetrieval=true</property>       
+        <property name="hibernate.connection.username">umoxyy39ctdeckck</property>
+        <property name="hibernate.connection.password">0xr6wgEzdrXxX52gBcXo</property>
         <property name="hibernate.connection.isolation">2</property>
+        <property name="hibernate.connection.pool_size">2</property>
         <property name="hibernate.show_sql">true</property>
         <mapping class="hibernate.Admin"></mapping>
         <mapping class="hibernate.UserStatus"></mapping>
