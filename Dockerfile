@@ -1,5 +1,5 @@
 # Tomcat 10 සහ JDK 21 සහිත නිල Docker Image එක
-FROM tomcat:10.1-jdk21
+FROM tomcat:9.0-jdk8
 
 # ඔයාගේ war file එක Tomcat server එකට copy කිරීම
 # 'Airnet.war' යනු ඔයාගේ war file එකේ නමයි
