@@ -1,8 +1,9 @@
-# Payara (GlassFish) Java 8 හි අවසාන සහ ස්ථාවර සංස්කරණය
-FROM payara/server-full:5.2022.5
+# සැහැල්ලු Tomcat 9 සංස්කරණය (Java 8 සමඟ)
+FROM tomcat:9.0-jdk8
 
-# ඔයාගේ ව්‍යාපෘතියේ dist ෆෝල්ඩර් එකේ ඇති Airnet.war ෆයිල් එක සර්වර් එකට ලබාදීම
-COPY dist/Airnet.war $DEPLOY_DIR/ROOT.war
+# ඔයාගේ war ෆයිල් එක Tomcat හි webapps ෆෝල්ඩර් එකට දැමීම
+# නම 'ROOT.war' ලෙස වෙනස් කිරීමෙන් API ලින්ක් ගැටලුව සම්පූර්ණයෙන්ම විසඳේ
+COPY dist/Airnet.war /usr/local/tomcat/webapps/ROOT.war
 
 # Render සර්වර් එකට Port එක හඳුන්වා දීම
 EXPOSE 8080
