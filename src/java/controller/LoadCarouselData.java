@@ -62,6 +62,14 @@ public class LoadCarouselData extends HttpServlet {
 
         } catch (Exception e) {
             responseObject.addProperty("status", false);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+
+        if (session != null) {
+            session.close();
         }
 
         String json = gson.toJson(responseObject);
