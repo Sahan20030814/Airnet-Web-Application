@@ -40,9 +40,10 @@ public class LoadCarouselData extends HttpServlet {
         responseObject.addProperty("status", false);
 
         SessionFactory sf = HibernateUtil.getSessionFactory();
-        Session session = sf.openSession();
+        Session session = null;
 
         try {
+            session = sf.openSession();
 
             Status status = (Status) session.get(Status.class, LoadCarouselData.ACTIVE_STATUS);
 
@@ -66,10 +67,6 @@ public class LoadCarouselData extends HttpServlet {
             if (session != null) {
                 session.close();
             }
-        }
-
-        if (session != null) {
-            session.close();
         }
 
         String json = gson.toJson(responseObject);
