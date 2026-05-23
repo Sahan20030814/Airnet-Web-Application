@@ -54,34 +54,47 @@ public class SignIn extends HttpServlet {
             SessionFactory sf = HibernateUtil.getSessionFactory();
             Session session = sf.openSession();
 
-            Criteria c1 = session.createCriteria(User.class);
-            c1.add(Restrictions.eq("email", email));
-            c1.add(Restrictions.eq("password", password));
+            try {
 
-            if (c1.list().isEmpty()) {
-                responseObject.addProperty("message", "Incorrect email address or password!");
-            } else {
-                User u = (User) c1.list().get(0);
-                HttpSession ses = request.getSession();
+                Criteria c1 = session.createCriteria(User.class);
+                c1.add(Restrictions.eq("email", email));
+                c1.add(Restrictions.eq("password", password));
 
-                if (!u.getUser_status().getName().equalsIgnoreCase("Verified")) {   // not verified
-                    ses.setAttribute("email", email);
-                    responseObject.addProperty("status", true);
-                    responseObject.addProperty("message", "1");
-                } else {                                         // verified
-                    ses.setAttribute("user", u);
+                if (c1.list().isEmpty()) {
+                    responseObject.addProperty("message", "Incorrect email address or password!");
+                } else {
+                    User u = (User) c1.list().get(0);
+                    HttpSession ses = request.getSession();
 
-                    if (rememberMe) {
-                        ses.setMaxInactiveInterval(172800);   // 2 days
+                    if (u.getUser_status() == null) {
+                        responseObject.addProperty("message", "Account status error. Please contact admin.");
                     }
 
-                    responseObject.addProperty("status", true);
-                    responseObject.addProperty("message", "Login successful!");
+                    if (!u.getUser_status().getName().equalsIgnoreCase("Verified")) {   // not verified
+                        ses.setAttribute("email", email);
+                        responseObject.addProperty("status", true);
+                        responseObject.addProperty("message", "1");
+                    } else {                                         // verified
+                        ses.setAttribute("user", u);
+
+                        if (rememberMe) {
+                            ses.setMaxInactiveInterval(172800);   // 2 days
+                        }
+
+                        responseObject.addProperty("status", true);
+                        responseObject.addProperty("message", "Login successful!");
+                    }
+
                 }
 
+            } catch (Exception e) {
+                e.printStackTrace();
+                responseObject.addProperty("message", "Internal server error occurred! Please try again.");
+            } finally {
+                if (session != null && session.isOpen()) {
+                    session.close();
+                }
             }
-            session.close();
-
         }
 
         String json = gson.toJson(responseObject);
